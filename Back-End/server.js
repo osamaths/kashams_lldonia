@@ -5,14 +5,13 @@ var mongoose = require('mongoose');
 var User= require('./Database/modules/User.js');
 var News=require('./Database/modules/News.js');
 var multer = require('multer');
-var Profile = require ('./routes/profile');
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use('/profile', Profile);
 
 
+//Database Connection
 var port = 3005;
 
 mongoose.connect('mongodb://localhost:27017/kshamsDB', ()=>{
@@ -21,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/kshamsDB', ()=>{
 
 var db = mongoose.connection;
 
-
+//Upload Image
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -32,23 +31,22 @@ var storage = multer.diskStorage({
     }
 });
 
-var upload = multer({ storage: storage }).single('profileImage');
+var upload = multer({ storage: storage }).single('NewsImage');
 
+// newsImage
 
-app.post('/profile', function (req, res) {
-  console.log ("inside /profile");
+app.post('/news/image', function (req, res) {
+  console.log ("inside /uploads");
     upload(req, res, function (err) {
         if (err) {
-            // An error occurred when uploading
-
+            	res.send("ErrorImageUpload")
         }
-
-        // Everything went fine
+            	res.send("Correct")
     })
 });
 
 
-
+//SignUp
 app.post('/user/signup', (req, res) => {
 	var newUser={
 		gender: req.body.gender,
@@ -65,7 +63,7 @@ app.post('/user/signup', (req, res) => {
     });
 });
 
-
+//Login
 
 app.post('/user/login', (req, res) => {
 	User.findOne({username:req.body.username}, (err,user) => {
@@ -78,6 +76,19 @@ app.post('/user/login', (req, res) => {
 	})
 });
 
+//addNews
+app.post('/news/add', (req, res) => {
+	var newNews={
+		id: req.body.id,
+		text: req.body.text,
+		image: req.body.image
+
+	}
+  News.create(newNews, function(err, doc){
+        if(err) return err;
+        else { res.send(doc); }
+    });
+});
 
 
 
