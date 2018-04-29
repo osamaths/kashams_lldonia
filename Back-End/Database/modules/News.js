@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var NewsSchema = new Schema({
-	idImage: Number,
-	text: String,
+  
+  text: String,
 	image:String
  });
 

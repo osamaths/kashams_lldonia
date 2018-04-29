@@ -79,18 +79,44 @@ app.post('/user/login', (req, res) => {
 //addNews
 app.post('/news/add', (req, res) => {
 	var newNews={
-		id: req.body.id,
+
 		text: req.body.text,
 		image: req.body.image
-
-	}
+  }
   News.create(newNews, function(err, doc){
         if(err) return err;
         else { res.send(doc); }
     });
 });
 
+//Delete
+app.post('/news/delete', (req, res) => {
+	News.findOne({_id:req.body._id}, (err,user) => {
+   res.send("the new was deleted")
+	 News.delete(_id, function(err, doc){
+				 if(err) return err;
+				 else { res.send(doc); }
+		 });
 
+ 	})
+ });
+
+
+//Update
+ app.post('/news/update', (req, res) => {
+	 News.findOne({_id:req.body._id}, (err,user) => {
+    	var newNews={
+				text:req.body.text,
+				image: req.body.image
+			}
+			News.update(newNews, function(err, doc){
+						if(err) return err;
+						else { res.send(doc); }
+				});
+
+ 	})
+
+});
 
 
 
