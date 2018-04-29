@@ -89,20 +89,20 @@ app.post('/news/add', (req, res) => {
     });
 });
 
-//Delete
-app.post('/news/delete', (req, res) => {
-	News.findOne({_id:req.body._id}, (err,user) => {
-   res.send("the new was deleted")
-	 News.delete(_id, function(err, doc){
-				 if(err) return err;
-				 else { res.send(doc); }
-		 });
-
+//Delete news
+app.delete('/news/delete/:id', (req, res) => {
+	var id=req.params.id;
+News.findOneAndRemove({_id:id}, (err,user) => {
+  if(err){
+		console.log(err);
+		return res.status(500).send();
+	}
+return res.status(300).send();
  	})
  });
 
 
-//Update
+//Update news
  app.post('/news/update', (req, res) => {
 	 News.findOne({_id:req.body._id}, (err,user) => {
     	var newNews={
