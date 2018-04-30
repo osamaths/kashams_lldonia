@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "Kashams_Lldonia";
+        return "Kashams_lldonia";
     }
 }
