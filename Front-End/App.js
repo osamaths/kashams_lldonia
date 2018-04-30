@@ -9,8 +9,11 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
+  Alert
 } from 'react-native';
+import t from 'tcomb-form-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -19,20 +22,47 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const Form = t.form.Form;
+const User = t.struct({
+  email: t.String,
+  username: t.maybe( t.String ),
+  password: t.String,
+  terms: t.Boolean
+});
+const options = {
+  fields: {
+    terms: {
+      label: 'Agree to Terms',
+    },
+    email: {
+      error: 'Enter a valid Email.'
+    },
+    password: {
+      error: 'Enter a password.'
+    }
+  },
+};
+
 type Props = {};
 export default class App extends Component<Props> {
+  handelSubmit = () => {
+    const value = this._form.getValue();
+    console.log('value:', value);
+    Alert.alert(value);
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+       <Form
+       type={User}
+       ref={c => this._form = c}
+       options={options}/>
+
+       <Button
+        title="Sign Up!"
+        onPress={this.handelSubmit}
+      />
       </View>
     );
   }
@@ -40,19 +70,9 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+      justifyContent: 'center',
+      marginTop: 50,
+      padding: 20,
+      backgroundColor: '#ffffff',
   },
 });
