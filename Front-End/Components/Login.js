@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import t from 'tcomb-form-native';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 var Form = t.form.Form;
+
+
 
 // here we are: define your domain model
 var Person = t.struct({
   username: t.String,
-  password: t.maybe(t.String),
-  rememberMe: t.Boolean
+  password: t.String,
 });
 const options = {
   fields: {
@@ -18,17 +18,41 @@ const options = {
       error: 'Enter your username.'
     },
     password: {
+      label: 'Password',
       error: 'Enter your password.'
-    },
-    rememberMe: {
-      label: 'Remember Me'
     }
   },
 };
 
+// Fake Data
+users = [
+  {username: 'osamaths', password: '1234'},
+  {username: 'shahd', password: '1234'}
+];
+alertMsg = (msg) => {
+  Alert.alert(msg);
+}
+checkLoginData = (userData) => {
+  if (userData) {
+    console.log (userData)
+    for (var user in users){
+      console.log ('----->', users[user])
+      if (users[user].username === userData.username){
+        if (users[user].password === userData.password) {
+          console.log ('Welcome ', users[user].username);
+          return 'Welcome ' + users[user].username;
+        } else {
+          return "Password is wrong!";
+        }
+      }
+    }
+    return "Invalid username";
+  }
+}
 export default class Login extends React.Component {
-   handelSubmit = () => {
-    const value = this._form.getValue();
+  handelSubmit = () => {
+    const userData = this._form.getValue();
+    Alert.alert(checkLoginData(userData));
   }
   render() {
     return (
@@ -42,10 +66,9 @@ export default class Login extends React.Component {
             style={styles.btn}
             onPress={this.handelSubmit}
             underlayColor="blue">
-
-              <Text>Login</Text>
+            <Text>Login</Text>
           </TouchableOpacity>
-          
+
           <View style={styles.signupTxt}>
           <Text> Don't have an account?</Text>
            <TouchableOpacity
@@ -61,8 +84,8 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
       justifyContent: 'center',
-      marginTop: 50,
       padding: 20,
       backgroundColor: '#ffffff',
   },

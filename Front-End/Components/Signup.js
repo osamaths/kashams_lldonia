@@ -12,33 +12,63 @@ var Gender = t.enums({
 });
 var Person = t.struct({
   email: t.String,
-  username: t.maybe(t.String),// a required string
+  username: t.String,// a required string
   password: t.String,  // an optional string
-  birthDay: t.Date,
+  confirm: t.String,  // an optional string
+  year: t.Number,
   gender: Gender,
-  rememberMe: t.Boolean        // a boolean
 });
-   let myFormatFunction = (format,date) =>{
-            return moment(date).format(format);
-        }
+
 var options = {
   fields:{
+    email:{
+      label: "Email",
+      error: "Please enter your email"
+    },
     username:{
       label: "Username",
+      error: "Please enter your username"
     },
-   birthDay: {
-     mode: 'date',
-      config: {
-         format: (date) => myFormatFunction('L', date),
-       },
-   }
+    password: {
+      label: "Password",
+      error: "Please enter your password"
+    },
+    confirm: {
+      label: "Confirm",
+      error: "Please enter confirm password"
+    },
+    year: {
+      label: "Year",
+      error: "Enter your Simister year"
+    },
+    gender: {
+      label: "Gender",
+      error: "Please select your Gender"
+    }
   }
 };
 
 export default class SignUp extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      username: '',
+      password: '',
+      year: '',
+      gender: ''
+    }
+  }
+  handelSubmit = () => {
+   const userData = this._form.getValue();
+   if (userData) {
+     this.setState({email: userData.email, username: userData.username, password: userData.password, year: userData.year, gender: userData.gender});
+   }
+  }
   render() {
     return (
-   <ScrollView style={styles.container}>
+      <ScrollView style={styles.container}>
         <Form
             type={Person}
             ref={c => this._form = c}
@@ -52,7 +82,7 @@ export default class SignUp extends React.Component {
 
               <Text>Sign Up</Text>
           </TouchableOpacity>
-          
+
           <View style={styles.signupTxt}>
           <Text> Already have acount? </Text>
            <TouchableOpacity
@@ -68,12 +98,12 @@ export default class SignUp extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-      justifyContent: 'center',
-      marginTop: 50,
+    flex: 1,
       padding: 20,
       backgroundColor: '#ffffff',
   },
   form: {
+    flexDirection: 'row',
     padding: 0,
   },
   btn: {
@@ -87,5 +117,6 @@ const styles = StyleSheet.create({
   signupTxt: {
     flexDirection: 'row',
     marginTop: 10,
+    marginBottom: 10
   }
 });
