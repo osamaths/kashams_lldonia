@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Database Connection
 var port = 3005;
 
-mongoose.connect('mongodb://localhost:27017/kshamsDB', ()=>{
+mongoose.connect('mongodb://admin:admin@ds163699.mlab.com:63699/kshamsdb', ()=>{
 	console.log("Database is connected.")
 });
 
