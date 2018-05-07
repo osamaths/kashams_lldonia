@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User= require('./Database/modules/User.js');
 var News=require('./Database/modules/News.js');
+var quran=require('./routes/quran');
 
 
 var multer = require('multer');
@@ -21,6 +22,9 @@ mongoose.connect('mongodb://admin:admin@ds163699.mlab.com:63699/kshamsdb', ()=>{
 });
 
 var db = mongoose.connection;
+
+//useRoutes
+app.use('/quran',quran);
 
 //Upload Image
 
@@ -66,7 +70,6 @@ app.post('/user/signup', (req, res) => {
 });
 
 //Login
-
 app.post('/user/login', (req, res) => {
 	User.findOne({username:req.body.username}, (err,user) => {
 		if(req.body.password===user.password){
@@ -102,7 +105,6 @@ News.findOneAndRemove({_id:id}, (err,user) => {
 return res.status(300).send();
  	})
  });
-
 
 //Update news
  app.post('/news/update', (req, res) => {
