@@ -11,6 +11,7 @@ var Person = t.struct({
   username: t.String,
   password: t.String,
 });
+
 const options = {
   fields: {
     username: {
@@ -24,37 +25,43 @@ const options = {
   },
 };
 
-// Fake Data
-users = [
-  {username: 'osamaths', password: '1234'},
-  {username: 'shahd', password: '1234'}
-];
-alertMsg = (msg) => {
-  Alert.alert(msg);
-}
-checkLoginData = (userData) => {
+
+checkLoginData = (userData, navigate) => {
   if (userData) {
-    console.log (userData)
-    for (var user in users){
-      console.log ('----->', users[user])
-      if (users[user].username === userData.username){
-        if (users[user].password === userData.password) {
-          console.log ('Welcome ', users[user].username);
-          return 'Welcome ' + users[user].username;
+    fetch('http://192.168.174.128:3005/user/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( userData )
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(responseJson => {
+        if (responseJson === true) {
+          navigate('Home');
         } else {
-          return "Password is wrong!";
+          alert (responseJson.message);
         }
-      }
-    }
-    return "Invalid username";
+      })
+      .catch(err => {
+        throw err;
+      });
   }
 }
 export default class Login extends React.Component {
-  handelSubmit = () => {
+  static navigationOptions = {
+    header: null
+  };
+  handelSubmit = (navigate) => {
     const userData = this._form.getValue();
-    Alert.alert(checkLoginData(userData));
+    checkLoginData(userData, navigate);
   }
   render() {
+    const { navigate } = this.props.navigation;
+    
     return (
       <View style={styles.container}>
         <Form
@@ -64,7 +71,10 @@ export default class Login extends React.Component {
           />
           <TouchableOpacity
             style={styles.btn}
-            onPress={this.handelSubmit}
+            onPress={
+              () => {
+              this.handelSubmit(navigate);
+            }}
             underlayColor="blue">
             <Text>Login</Text>
           </TouchableOpacity>
@@ -72,7 +82,6 @@ export default class Login extends React.Component {
           <View style={styles.signupTxt}>
           <Text> Don't have an account?</Text>
            <TouchableOpacity
-            onPress={this.handelSubmit}
             underlayColor="blue">
           <Text style={{color: "#32baff"}}> SignUp</Text>
           </TouchableOpacity>
