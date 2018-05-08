@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import t from 'tcomb-form-native';
-import moment from 'moment';
 
 var Form = t.form.Form;
 
@@ -10,6 +9,7 @@ var Gender = t.enums({
   M: 'Male',
   F: 'Female'
 });
+
 var Person = t.struct({
   email: t.String,
   username: t.String,// a required string
@@ -48,25 +48,47 @@ var options = {
   }
 };
 
-export default class SignUp extends React.Component {
-  constructor (props) {
-    super(props);
+sginupReq = (userData, navigate) => {
+  if (userData) {
+    fetch('http://192.168.174.128:3005/user/signup', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( userData )
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(responseJson => {
+        if (responseJson === true) {
+          navigate('Home');
+        } else {
+          alert (responseJson.message);
+        }
+      })
+      .catch(err => {
+        throw err;
+      });
+  }
+}
 
-    this.state = {
-      email: '',
-      username: '',
-      password: '',
-      year: '',
-      gender: ''
-    }
+export default class SignUp extends React.Component {
+  static navigationOptions = {
+    header: null
+  };
+
+  handelSubmit = (navigate) => {
+    const userData = this._form.getValue();
+    if (userData.password === userData.confirm)
+    sginupReq (userData, navigate);
+    else alert('Password not match.')
   }
-  handelSubmit = () => {
-   const userData = this._form.getValue();
-   if (userData) {
-     this.setState({email: userData.email, username: userData.username, password: userData.password, year: userData.year, gender: userData.gender});
-   }
-  }
+
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <ScrollView style={styles.container}>
         <Form
@@ -77,7 +99,10 @@ export default class SignUp extends React.Component {
           />
           <TouchableOpacity
             style={styles.btn}
-            onPress={this.handelSubmit}
+            onPress={() => {
+              this.handelSubmit(navigate);
+            }
+          }
             underlayColor="blue">
 
               <Text>Sign Up</Text>
@@ -86,7 +111,6 @@ export default class SignUp extends React.Component {
           <View style={styles.signupTxt}>
           <Text> Already have acount? </Text>
            <TouchableOpacity
-            onPress={this.handelSubmit}
             underlayColor="blue">
           <Text style={{color: "#32baff"}}> Login</Text>
           </TouchableOpacity>

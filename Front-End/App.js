@@ -1,19 +1,32 @@
 import React from 'react';
-import SignUp from './Components/Signup';
-import Login from './Components/Login';
-import {View} from 'react-native';
-import { TabNavigator } from 'react-navigation';
+import {View, StatusBar, StyleSheet} from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-export class App extends React.Component {
+import TabNavigation from './Components/TabNavigators/TabNavigation';
+import AccessNavigator from './Components/TabNavigators/AccessNavigator';
+
+export default class App extends React.Component {
   render() {
     return (
-      <View>
-        <Login />
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor="#4f6d7a"
+        />
+        <AppStack />
       </View>
     )
   }
 }
-export default TabNavigator({
-  Login: { screen: Login },
-  SignUp: { screen: SignUp },
+
+const AppStack = StackNavigator({
+  Login: { screen: AccessNavigator },
+  Home: { screen: TabNavigation },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    //backgroundColor: '#111',
+  }
 });
