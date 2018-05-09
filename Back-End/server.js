@@ -54,29 +54,35 @@ app.post('/news/image', function (req, res) {
 
 //SignUp
 app.post('/user/signup', (req, res) => {
+User.findOne({username:req.body.username}, (err,user) => {
+
 	var newUser={
 		gender: req.body.gender,
 		username: req.body.username,
 		email: req.body.email,
 		password:req.body.password,
 		year:req.body.year
-
 	}
 
 	User.create(newUser, function(err, doc){
-        if(err) return err;
-        else { res.send(doc); }
+        if(req.body.username===user.username)
+				res.send({message:"Invalid,Please try again"});
+        else {
+					 res.send(true + doc);
+				  }
+				});
     });
+
 });
 
 //Login
 app.post('/user/login', (req, res) => {
 	User.findOne({username:req.body.username}, (err,user) => {
 		if(req.body.password===user.password){
-			res.send("OpenHomePage")
+			res.send(true);
 		}
 		else {
-			res.send("password error")
+			res.send({message:"password error"});
 		}
 	})
 });
