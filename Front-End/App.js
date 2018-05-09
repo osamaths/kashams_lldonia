@@ -19,8 +19,8 @@ export default class App extends React.Component {
 }
 
 const AppStack = StackNavigator({
-  Login: { screen: AccessNavigator },
   Home: { screen: TabNavigation },
+  Login: { screen: AccessNavigator },
 });
 
 const styles = StyleSheet.create({
