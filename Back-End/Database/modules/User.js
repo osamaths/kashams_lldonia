@@ -2,11 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-  gender: Boolean,
+  gender: String,
   username: String,
   email:String,
   password:String,
-  year:Number
+  dob: Date
+
 });
 
 module.exports = mongoose.model('User', UserSchema);
