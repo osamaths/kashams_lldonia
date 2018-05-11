@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User= require('./Database/modules/User.js');
 var News=require('./Database/modules/News.js');
+var quran=require('./routes/quran');
 
 
 var multer = require('multer');
@@ -21,6 +22,9 @@ mongoose.connect('mongodb://admin:admin@ds163699.mlab.com:63699/kshamsdb', ()=>{
 });
 
 var db = mongoose.connection;
+
+//useRoutes
+app.use('/quran',quran);
 
 //Upload Image
 
@@ -55,25 +59,33 @@ app.post('/user/signup', (req, res) => {
 		username: req.body.username,
 		email: req.body.email,
 		password:req.body.password,
-		year:req.body.year
+		dob:req.body.dob
+	};
+	User.findOne({ username: newUser.username }, (err, user) => {
+         if (!user) {
 
-	}
+                 User.create(newUser, (err, doc) => {
+                         if (err) {
+                             res.send({message:err});
+                         }
+                         res.send(true + doc)
+                     }
+                 );
 
-	User.create(newUser, function(err, doc){
-        if(err) return err;
-        else { res.send(doc); }
-    });
-});
+         } else {
+             res.send({message: 'Username is already exist.'});
+         }
+     });
+ });
 
 //Login
-
 app.post('/user/login', (req, res) => {
 	User.findOne({username:req.body.username}, (err,user) => {
 		if(req.body.password===user.password){
-			res.send("OpenHomePage")
+			res.send(true);
 		}
 		else {
-			res.send("password error")
+			res.send({message:"password error"});
 		}
 	})
 });
@@ -102,7 +114,6 @@ News.findOneAndRemove({_id:id}, (err,user) => {
 return res.status(300).send();
  	})
  });
-
 
 //Update news
  app.post('/news/update', (req, res) => {
