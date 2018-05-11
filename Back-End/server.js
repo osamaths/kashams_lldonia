@@ -54,26 +54,29 @@ app.post('/news/image', function (req, res) {
 
 //SignUp
 app.post('/user/signup', (req, res) => {
-User.findOne({username:req.body.username}, (err,user) => {
-
 	var newUser={
 		gender: req.body.gender,
 		username: req.body.username,
 		email: req.body.email,
 		password:req.body.password,
-		year:req.body.year
-	}
+		dob:req.body.dob
+	};
+	User.findOne({ username: newUser.username }, (err, user) => {
+         if (!user) {
 
-	User.create(newUser, function(err, doc){
-        if(req.body.username===user.username)
-				res.send({message:"Invalid,Please try again"});
-        else {
-					 res.send(true + doc);
-				  }
-				});
-    });
+                 User.create(newUser, (err, doc) => {
+                         if (err) {
+                             res.send({message:err});
+                         }
+                         res.send(true + doc)
+                     }
+                 );
 
-});
+         } else {
+             res.send({message: 'Username is already exist.'});
+         }
+     });
+ });
 
 //Login
 app.post('/user/login', (req, res) => {
