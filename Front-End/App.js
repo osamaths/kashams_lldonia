@@ -6,11 +6,15 @@ import TabNavigation from './Components/TabNavigators/TabNavigation';
 import AccessNavigator from './Components/TabNavigators/AccessNavigator';
 
 export default class App extends React.Component {
+  componentDidMount() {
+    console.log('started debugging...')
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <StatusBar
-          backgroundColor="#4f6d7a"
+          backgroundColor="transparent"
         />
         <AppStack />
       </View>

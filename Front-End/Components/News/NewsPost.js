@@ -9,7 +9,6 @@ export default class NewsPost extends React.Component {
     }
   }
   render() {
-    console.log (this.state.post)
     return (
       <View style={styles.container}>
         <Image
