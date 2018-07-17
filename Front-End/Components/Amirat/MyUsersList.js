@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import Amira from './Amira';
-import { getAmiras } from '../../Actions/amirasActions';
+import User from './User';
+import { getMyList } from '../../Actions/myUsersActions';
 
-export default class AmiraLists extends React.Component {
+export default class MyUsersLists extends React.Component {
 
   static navigationOptions = {
     header: null
@@ -12,30 +12,30 @@ export default class AmiraLists extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      amiras: ''
+      users: ''
     }
   }
 
   componentDidMount() {
-    let tempAmiras = getAmiras();
-    if (tempAmiras && tempAmiras.length > 0) 
-        this.setState({amiras: tempAmiras});
+    let tempUsers = getMyList();
+    if (tempUsers && tempUsers.length > 0) 
+        this.setState({users: tempUsers});
   }
 
-  renderAmiras = () => {
-    if (this.state.amiras.length > 0)
+  renderMyList = () => {
+    if (this.state.users.length > 0)
       return (
         <View>
-          {this.state.amiras.map((amira, index) => (
-            <Amira  style={styles.container}
-                    amira={amira} key={index} />
+          {this.state.users.map((user, index) => (
+            <User  style={styles.container}
+                    user={user} key={index} />
           ))}
         </View>
       );
       else 
         return (
             <View style={styles.container}>
-                <Text>There is no Amira available.</Text>
+                <Text>There is no User available.</Text>
             </View>
         );
   };
@@ -43,7 +43,7 @@ export default class AmiraLists extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        {this.renderAmiras()}
+        {this.renderMyList()}
       </ScrollView>
     )
   }

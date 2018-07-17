@@ -1,25 +1,23 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { selectAmira } from '../../Actions/amirasActions.js'; 
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { callUser } from '../../Actions/myUsersActions';
 
-export default class Amira extends React.Component {
+export default class User extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      name: this.props.amira.name,
-      phone: this.props.amira.phone
+      user: this.props.user,
     }
   }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.txt}>Name: {this.state.name} </Text>
-        <Text style={styles.txt}>Phone: {this.state.phone} </Text>
+        <Text style={styles.txt}> {this.state.user.name} </Text>
         <TouchableOpacity 
             onPress={() => {
-                selectAmira(this.state);
+                callUser(this.state.user);
             }}>
-           <Text>إختيار</Text>
+           <Text>اتصال</Text>
         </TouchableOpacity>
       </View>
     )

@@ -1,12 +1,14 @@
 export const getAmiras = () => {
-    fetch('http://192.168.174.128:3005/get/available/amiras')
+    /* fetch('http://192.168.174.128:3005/get/available/amiras')
     .then((resp) => resp.json())
     .then(function(data) {
         return 'data';
     })
     .catch(error => {
         return 'Faild';
-    })
+    }) */
+
+    return fakeAmiras;
 }
 
 export const selectAmira = (amira) => {
@@ -33,3 +35,23 @@ export const selectAmira = (amira) => {
           throw err;
         });
 }
+
+// Fake data
+var fakeAmiras = [
+  {
+    name: 'Shahd',
+    phone: '01010101'
+  },
+  {
+    name: 'Shahd',
+    phone: '01010101'
+  },
+  {
+    name: 'Shahd',
+    phone: '01010101'
+  },
+  {
+    name: 'Shahd',
+    phone: '01010101'
+  }
+]

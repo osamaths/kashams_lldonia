@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import Amira from './Amira';
-import { getAmiras } from '../../Actions/amirasActions';
+import Halqa from './Halqa';
+import { getMyList } from '../../Actions/HalqatActions'
 
-export default class AmiraLists extends React.Component {
+export default class HalqaLists extends React.Component {
 
   static navigationOptions = {
     header: null
@@ -12,30 +12,30 @@ export default class AmiraLists extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      amiras: ''
+      halqat: ''
     }
   }
 
   componentDidMount() {
-    let tempAmiras = getAmiras();
-    if (tempAmiras && tempAmiras.length > 0) 
-        this.setState({amiras: tempAmiras});
+    let tempHalqat = getMyList();
+    if (tempHalqat && tempHalqat.length > 0) 
+        this.setState({halqat: tempHalqat});
   }
 
-  renderAmiras = () => {
-    if (this.state.amiras.length > 0)
+  renderMyList = () => {
+    if (this.state.halqat.length > 0)
       return (
         <View>
-          {this.state.amiras.map((amira, index) => (
-            <Amira  style={styles.container}
-                    amira={amira} key={index} />
+          {this.state.halqat.map((halqa, index) => (
+            <Halqa  style={styles.container}
+                    halqa={halqa} key={index} />
           ))}
         </View>
       );
       else 
         return (
             <View style={styles.container}>
-                <Text>There is no Amira available.</Text>
+                <Text>There is no Halqa available.</Text>
             </View>
         );
   };
@@ -43,7 +43,7 @@ export default class AmiraLists extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        {this.renderAmiras()}
+        {this.renderMyList()}
       </ScrollView>
     )
   }
@@ -53,6 +53,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(52, 52, 52, 0.2)',
-    paddingTop: 10
   }
 });
