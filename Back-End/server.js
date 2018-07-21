@@ -29,24 +29,26 @@ var db = mongoose.connection;
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/')
+        cb(null, '/home/osamaths/Documents/Repos/kashams_lldonia/Back-End/uploads/')
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + '.jpg')
     }
 });
 
-var upload = multer({ storage: storage }).single('NewsImage');
+var upload = multer({ storage: storage, limits: {fileSize: 1000000} }).single('NewsImage');
 
 // newsImage
 
 app.post('/news/image', function (req, res) {
   console.log ("inside /uploads");
+  console.log (req.file)
     upload(req, res, function (err) {
-        if (err) {
-            	res.send("ErrorImageUpload")
-        }
-            	res.send("Correct")
+        if (err)
+			res.send("ErrorImageUpload")
+		else
+			res.send("Correct")
+
     })
 });
 
@@ -81,13 +83,19 @@ app.post('/user/signup', (req, res) => {
 
 //Login
 app.post('/user/login', (req, res) => {
+	console.log ('loging in...', req.body)
 	User.findOne({username:req.body.username}, (err,user) => {
-		if(req.body.password===user.password){
-			res.send(true);
+		if (user) {
+			if(req.body.password===user.password){
+				res.send(true);
+			}
+			else {
+				res.send({message:"password error"});
+			}
+		} else {
+			res.send ({message: "Username '" + req.body.username + "' not found." })
 		}
-		else {
-			res.send({message:"password error"});
-		}
+
 	})
 });
 
