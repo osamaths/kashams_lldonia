@@ -6,7 +6,11 @@ var UserSchema = new Schema({
   username: String,
   email:String,
   password:String,
-  dob: Date
+  dob: Date,
+  isAmira: Boolean,
+  people:[String],
+  currentAmiraId: String,
+  isAdmin: Boolean
 
 });
 
