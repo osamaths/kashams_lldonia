@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User= require('./Database/modules/User.js');
 var News=require('./Database/modules/News.js');
-var quran=require('./routes/quran');
+
 
 
 var multer = require('multer');
@@ -23,8 +23,7 @@ mongoose.connect('mongodb://admin:admin@ds163699.mlab.com:63699/kshamsdb', ()=>{
 
 var db = mongoose.connection;
 
-//useRoutes
-app.use('/quran',quran);
+
 
 //Upload Image
 
@@ -61,7 +60,9 @@ app.post('/user/signup', (req, res) => {
 		username: req.body.username,
 		email: req.body.email,
 		password:req.body.password,
-		dob:req.body.dob
+		currentAmiraId:req.body.currentAmiraId,
+		isAmira:req.body.isAmira,
+		isAdmin:req.body.isAdmin
 	};
 	User.findOne({ username: newUser.username }, (err, user) => {
          if (!user) {
@@ -111,6 +112,22 @@ app.post('/news/add', (req, res) => {
     });
 });
 
+
+// Osama Try
+//I did not get it , please explain more .
+app.get('/get/available/amiras', (req, res) => {
+	var finalUsers = [];
+	User.find({isAmira: true, }, (err, users) => {
+		for (var i = 0; i < users.length; i++) {
+			if (users[i].people.length < 6)
+				finalUsers.push(users[i]);
+}
+res.send(finalUsers);
+});
+});
+// *******************************
+
+
 //Delete news
 app.delete('/news/delete/:id', (req, res) => {
 	var id=req.params.id;
@@ -125,12 +142,12 @@ return res.status(300).send();
 
 //Update news
  app.post('/news/update', (req, res) => {
-	 News.findOne({_id:req.body._id}, (err,user) => {
+	 News.findOne({_id:req.body._id}, (err,news) => {
     	var newNews={
 				text:req.body.text,
 				image: req.body.image
 			}
-			News.update(newNews, function(err, doc){
+			news.update(newNews, function(err, doc){
 						if(err) return err;
 						else { res.send(doc); }
 				});
@@ -138,8 +155,20 @@ return res.status(300).send();
  	})
 
 });
+//add amira to user
+//need to check the length
 
-
+app.post('/add/amiraforuser', (req, res) => {
+	User.update({ _id: req.body.userId}, { currentAmiraId: req.body.amiraId},(err,user)=>{
+		if(err) return err;
+		console.log("current amira added")
+		User.update({ _id: req.body.amiraId }, { $push: { people: req.body.userId}},(err,user)=>{
+			if(err) return err;
+			console.log("people")
+			res.send("Done")
+		})
+	})
+});
 
 app.listen(port, function() {
   console.log('app listening on port ' + port);
