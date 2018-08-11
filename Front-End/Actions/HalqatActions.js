@@ -24,24 +24,67 @@ export const callUser = (user) => {
 }
 
 
-
-
 // Fake data
 var fakeHalqat = [
     {
         name: 'تجويد',
-        image: 'https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50'
+        description: "words words words",
+        image: 'https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50',
+        miniHalqat: [
+            {
+                name: 'blah',
+                time: "28/2/2018 11:00am",
+                place: "KASIT"
+            },
+            {
+                name: 'blah',
+                time: "28/2/2018 11:00am",
+                place: "KASIT"
+            },
+            {
+                name: 'blah',
+                time: "28/2/2018 11:00am",
+                place: "KASIT"
+            }
+        ]
     },
     {
         name: 'تجويد',
-        image: 'https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50'
+        description: "words words words",
+        image: 'https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50',
+        miniHalqat: [
+            {
+                name: 'blah',
+                time: "28/2/2018 11:00am",
+                place: "KASIT"
+            },
+            {
+                name: 'blah',
+                time: "28/2/2018 11:00am",
+                place: "KASIT"
+            },
+            {
+                name: 'blah',
+                time: "28/2/2018 11:00am",
+                place: "KASIT"
+            }
+        ]
     },
     {
         name: 'تجويد',
-        image: 'https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50'
-    },
-    {
-        name: 'تجويد',
-        image: 'https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50'
-    },
+        description: "words words words",
+        image: 'https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50',
+        miniHalqat: [
+            {
+                name: 'blah',
+                time: "28/2/2018 11:00am",
+                place: "KASIT"
+            },
+            {
+                name: 'blah',
+                time: "28/2/2018 11:00am",
+                place: "KASIT"
+            }
+        ]
+    }
   ]
