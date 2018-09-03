@@ -5,12 +5,13 @@ import AmiraLists from "../Amirat/AmiraLists";
 import MyUsersList from "../Amirat/MyUsersList";
 import HalqaLists from "../Halaqat/HalqaLists";
 import HalqatStack from "../TabNavigators/HalqatStack";
+import Menu from "./Menu";
 
 export default TabNavigator({
-  // "حلقة": { screen: miniHalqa },
-  HalqatStack: { screen: HalqatStack },
-  "My List": { screen: MyUsersList },
-  Amiras: { screen: AmiraLists },
   News: { screen: NewsLists },
-  "Add News": { screen: AddNews }
+  HalqatStack: { screen: HalqatStack },
+  Menu: { screen: Menu }
+  // "My List": { screen: MyUsersList },
+  // Amiras: { screen: AmiraLists },
+  // "Add News": { screen: AddNews }
 });

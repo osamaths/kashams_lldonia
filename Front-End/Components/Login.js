@@ -32,27 +32,31 @@ const options = {
 
 checkLoginData = (userData, navigate) => {
   if (userData) {
-    fetch("http://192.168.174.128:3005/user/login", {
+    var req = {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        Accepts: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(userData)
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(responseJson => {
-        if (responseJson === true) {
-          navigate("Home");
-        } else {
-          alert(responseJson.message);
-        }
-      })
-      .catch(err => {
-        throw err;
-      });
+    };
+    var url = "https://kashams-lldonia.herokuapp.com/user/login";
+
+    // fetch(url, req)
+    //   .then(response => {
+    //     return response.json();
+    //   })
+    //   .then(responseJson => {
+    //     if (responseJson === true) {
+    //       navigate("Home");
+    //     } else {
+    //       alert(responseJson.message);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     throw err;
+    //   });
+    navigate("Home");
   }
 };
 export default class Login extends React.Component {

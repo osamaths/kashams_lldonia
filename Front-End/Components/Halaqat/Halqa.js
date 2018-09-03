@@ -16,20 +16,20 @@ export default class Halqa extends React.Component {
     this.navigator = this.navigator.bind(this);
   }
 
-  navigator(navigate) {
+  navigator() {
     console.log("Halqa, miniHalqat.length:", this.state.miniHalqat.length);
     // navigate("miniHalqaLists");
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     console.log("Halqa");
 
     return (
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
-            this.navigator(navigate);
+            this.navigator();
           }}
         >
           <Image
