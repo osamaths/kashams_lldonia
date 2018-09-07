@@ -10,21 +10,19 @@ export default class Halqa extends React.Component {
     this.state = {
       name: this.props.halqa.name,
       description: this.props.halqa.description,
-      miniHalqat: this.props.halqa.miniHalqat
+      miniHalqat: this.props.halqa.miniHalqat,
+      navigate: this.props.navigate
     };
 
     this.navigator = this.navigator.bind(this);
   }
 
   navigator() {
-    console.log("Halqa, miniHalqat.length:", this.state.miniHalqat.length);
-    // navigate("miniHalqaLists");
+    this.state.navigate("miniHalqatLists", { data: this.state });
+    console.log("Halqa, miniHalqat.length:", this.state);
   }
 
   render() {
-    // const { navigate } = this.props.navigation;
-    console.log("Halqa");
-
     return (
       <View style={styles.container}>
         <TouchableOpacity

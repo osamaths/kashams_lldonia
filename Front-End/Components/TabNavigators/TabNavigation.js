@@ -1,17 +1,12 @@
 import { TabNavigator } from "react-navigation";
 import NewsLists from "../News/NewsLists";
-import AddNews from "../News/AddNews";
-import AmiraLists from "../Amirat/AmiraLists";
-import MyUsersList from "../Amirat/MyUsersList";
-import HalqaLists from "../Halaqat/HalqaLists";
-import HalqatStack from "../TabNavigators/HalqatStack";
-import Menu from "./Menu";
+import HalqatStack from "./HalqatStack";
+import MenuStack from "./MenuStack";
+import Shamosa from "../Shamosa/Shamosa";
 
 export default TabNavigator({
+  Shamosa: { screen: Shamosa },
   News: { screen: NewsLists },
   HalqatStack: { screen: HalqatStack },
-  Menu: { screen: Menu }
-  // "My List": { screen: MyUsersList },
-  // Amiras: { screen: AmiraLists },
-  // "Add News": { screen: AddNews }
+  MenuStack: { screen: MenuStack }
 });

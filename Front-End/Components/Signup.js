@@ -1,31 +1,37 @@
-import React from 'react';
-import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import t from 'tcomb-form-native';
+import React from "react";
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
+import t from "tcomb-form-native";
 
 var Form = t.form.Form;
 
 // here we are: define your domain model
 var Gender = t.enums({
-  M: 'Male',
-  F: 'Female'
+  M: "Male",
+  F: "Female"
 });
 
 var Person = t.struct({
   email: t.String,
-  username: t.String,// a required string
-  password: t.String,  // an optional string
-  confirm: t.String,  // an optional string
+  username: t.String, // a required string
+  password: t.String, // an optional string
+  confirm: t.String, // an optional string
   year: t.Number,
-  gender: Gender,
+  gender: Gender
 });
 
 var options = {
-  fields:{
-    email:{
+  fields: {
+    email: {
       label: "Email",
       error: "Please enter your email"
     },
-    username:{
+    username: {
       label: "Username",
       error: "Please enter your username"
     },
@@ -50,41 +56,40 @@ var options = {
 
 sginupReq = (userData, navigate) => {
   if (userData) {
-    fetch('http://192.168.174.128:3005/user/signup', {
-      method: 'POST',
+    fetch("http://192.168.174.128:3005/user/signup", {
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify( userData )
+      body: JSON.stringify(userData)
     })
       .then(response => {
         return response.json();
       })
       .then(responseJson => {
         if (responseJson === true) {
-          navigate('Home');
+          navigate("Home");
         } else {
-          alert (responseJson.message);
+          alert(responseJson.message);
         }
       })
       .catch(err => {
         throw err;
       });
   }
-}
+};
 
 export default class SignUp extends React.Component {
   static navigationOptions = {
     header: null
   };
 
-  handelSubmit = (navigate) => {
+  handelSubmit = navigate => {
     const userData = this._form.getValue();
-    if (userData.password === userData.confirm)
-    sginupReq (userData, navigate);
-    else alert('Password not match.')
-  }
+    if (userData.password === userData.confirm) sginupReq(userData, navigate);
+    else alert("Password not match.");
+  };
 
   render() {
     const { navigate } = this.props.navigation;
@@ -92,54 +97,52 @@ export default class SignUp extends React.Component {
     return (
       <ScrollView style={styles.container}>
         <Form
-            type={Person}
-            ref={c => this._form = c}
-            options={options}
-            style={styles.form}
-          />
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              this.handelSubmit(navigate);
-            }
-          }
-            underlayColor="blue">
+          type={Person}
+          ref={c => (this._form = c)}
+          options={options}
+          style={styles.form}
+        />
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            this.handelSubmit(navigate);
+          }}
+          underlayColor="blue"
+        >
+          <Text>Sign Up</Text>
+        </TouchableOpacity>
 
-              <Text>Sign Up</Text>
-          </TouchableOpacity>
-
-          <View style={styles.signupTxt}>
+        <View style={styles.signupTxt}>
           <Text> Already have acount? </Text>
-           <TouchableOpacity
-            underlayColor="blue">
-          <Text style={{color: "#32baff"}}> Login</Text>
+          <TouchableOpacity underlayColor="blue">
+            <Text style={{ color: "#32baff" }}> Login</Text>
           </TouchableOpacity>
-          </View>
+        </View>
       </ScrollView>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-      padding: 20,
-      backgroundColor: '#ffffff',
+    padding: 20,
+    backgroundColor: "#ffffff"
   },
   form: {
-    flexDirection: 'row',
-    padding: 0,
+    flexDirection: "row",
+    padding: 0
   },
   btn: {
-    backgroundColor : '#32baff',
-    width:300,
-    height:60,
-    borderRadius:10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#32baff",
+    width: 300,
+    height: 60,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center"
   },
   signupTxt: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 10,
     marginBottom: 10
   }
