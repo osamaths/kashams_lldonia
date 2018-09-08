@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
+import { reqLove } from "../../Actions/ShamosaActions";
+import { postStyle } from "../Styles";
 
 var postShapes = Object.freeze({
   LOVED: "☀",
@@ -18,11 +20,9 @@ export default class Shamosa extends React.Component {
     super(props);
     this.state = {
       post: this.props.post || {
-        imageUrl:
-          "https://facebook.github.io/react-native/docs/assets/favicon.png",
-        text:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        adminName: "shahd"
+        imageUrl: "",
+        text: "",
+        username: "shahd"
       },
       postStatus: "",
       postShape: postShapes.NOT_LOVED
@@ -30,24 +30,38 @@ export default class Shamosa extends React.Component {
   }
 
   toggleLove() {
-    switch (this.state.postShape) {
-      case postShapes.LOVED:
-        this.setState({ postShape: postShapes.NOT_LOVED });
-        break;
-      case postShapes.NOT_LOVED:
-        this.setState({ postShape: postShapes.LOVED });
-        break;
-      default:
-        this.setState({ postShape: postShapes.NOT_LOVED });
-        break;
+    if (reqLove()) {
+      switch (this.state.postShape) {
+        case postShapes.LOVED:
+          this.setState({ postShape: postShapes.NOT_LOVED });
+          break;
+        case postShapes.NOT_LOVED:
+          this.setState({ postShape: postShapes.LOVED });
+          break;
+        default:
+          this.setState({ postShape: postShapes.NOT_LOVED });
+          break;
+      }
+    } else {
+      alert("Something wrong happened.");
     }
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image style={styles.img} source={{ uri: this.state.post.imageUrl }} />
-        <Text style={styles.txt}> {this.state.post.text} </Text>
+      <View style={postStyle.container}>
+        <View styles={styles.profileContainer}>
+          <Image
+            style={styles.profileImage}
+            source={{ uri: this.state.post.imageUrl }}
+          />
+          <Text style={styles.username}> {"Shahd"} </Text>
+        </View>
+        <Image
+          style={postStyle.img}
+          source={{ uri: this.state.post.imageUrl }}
+        />
+        <Text style={postStyle.txt}> {this.state.post.text} </Text>
         <TouchableOpacity
           onPress={() => {
             this.toggleLove();
@@ -61,25 +75,30 @@ export default class Shamosa extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 0.7,
-    backgroundColor: "#eaeaea",
-    flexDirection: "column",
-    padding: 10,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: "#d6d7da"
-  },
-  img: {
-    flex: 0.6
-  },
-  txt: {
-    flex: 0.3,
-    padding: 10,
-    color: "black"
-  },
   love: {
+    flex: 1,
     color: "#32baff",
-    fontSize: 50
+    fontSize: 50,
+    alignSelf: "center",
+    paddingBottom: 10
+  },
+  username: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: "bold",
+    fontFamily: "Helvetica",
+    color: "rgb(54, 88, 153)"
+  },
+  profileContainer: {
+    flex: 1,
+    flexDirection: "row"
+  },
+  profileImage: {
+    flex: 2,
+    resizeMode: "cover",
+    height: 50,
+    width: 50,
+    borderWidth: 2,
+    borderRadius: 75
   }
 });

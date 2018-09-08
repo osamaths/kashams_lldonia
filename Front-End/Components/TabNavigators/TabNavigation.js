@@ -2,7 +2,7 @@ import { TabNavigator } from "react-navigation";
 import NewsLists from "../News/NewsLists";
 import HalqatStack from "./HalqatStack";
 import MenuStack from "./MenuStack";
-import Shamosa from "../Shamosa/Shamosa";
+import Shamosa from "../Shamosa/ShamosaLists";
 
 export default TabNavigator({
   Shamosa: { screen: Shamosa },

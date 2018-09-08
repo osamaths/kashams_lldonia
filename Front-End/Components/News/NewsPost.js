@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
+import { postStyle } from "../Styles";
 
 export default class NewsPost extends React.Component {
   constructor(props) {
@@ -17,29 +18,15 @@ export default class NewsPost extends React.Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={postStyle.container}>
         <Image
-          style={{ width: 120, height: 120 }}
+          style={postStyle.img}
           source={{ uri: this.state.post.imageUrl }}
         />
-        <Text style={styles.txt}> {this.state.post.text} </Text>
+        <Text style={postStyle.txt}> {this.state.post.text} </Text>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 0.33,
-    backgroundColor: "#eaeaea",
-    flexDirection: "row",
-    padding: 10,
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: "#d6d7da"
-  },
-  txt: {
-    padding: 10,
-    color: "black"
-  }
-});
+const styles = StyleSheet.create({});

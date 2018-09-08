@@ -12,28 +12,28 @@ export default class NewsLists extends React.Component {
       posts: [
         {
           imageUrl:
-            "https://facebook.github.io/react-native/docs/assets/favicon.png",
+            "https://st.depositphotos.com/1575949/4964/v/950/depositphotos_49641543-stock-illustration-hot-news-on-red-stamp.jpg",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
           adminName: "shahd"
         },
         {
           imageUrl:
-            "https://facebook.github.io/react-native/docs/assets/favicon.png",
+            "https://st.depositphotos.com/1575949/4964/v/950/depositphotos_49641543-stock-illustration-hot-news-on-red-stamp.jpg",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
           adminName: "shahd"
         },
         {
           imageUrl:
-            "https://facebook.github.io/react-native/docs/assets/favicon.png",
+            "https://st.depositphotos.com/1575949/4964/v/950/depositphotos_49641543-stock-illustration-hot-news-on-red-stamp.jpg",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
           adminName: "shahd"
         },
         {
           imageUrl:
-            "https://facebook.github.io/react-native/docs/assets/favicon.png",
+            "https://st.depositphotos.com/1575949/4964/v/950/depositphotos_49641543-stock-illustration-hot-news-on-red-stamp.jpg",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
           adminName: "shahd"
@@ -47,7 +47,7 @@ export default class NewsLists extends React.Component {
       return (
         <View style={styles.container}>
           {this.state.posts.map((post, index) => (
-            <NewsPost style={styles.post} post={post} key={index} />
+            <NewsPost post={post} key={index} />
           ))}
         </View>
       );
