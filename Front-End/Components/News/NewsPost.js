@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
-import { postStyle } from "../Styles";
+import { postStyle } from "../../Styles/Styles";
 
 export default class NewsPost extends React.Component {
   constructor(props) {

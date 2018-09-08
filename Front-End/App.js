@@ -13,7 +13,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="transparent" />
+        <StatusBar backgroundColor="#00796B" />
         <AppStack />
       </View>
     );

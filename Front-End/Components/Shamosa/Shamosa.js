@@ -8,7 +8,7 @@ import {
   Image
 } from "react-native";
 import { reqLove } from "../../Actions/ShamosaActions";
-import { postStyle } from "../Styles";
+import { postStyle } from "../../Styles/Styles";
 
 var postShapes = Object.freeze({
   LOVED: "☀",
@@ -50,12 +50,15 @@ export default class Shamosa extends React.Component {
   render() {
     return (
       <View style={postStyle.container}>
-        <View styles={styles.profileContainer}>
+        <View style={styles.profileContainer}>
           <Image
             style={styles.profileImage}
             source={{ uri: this.state.post.imageUrl }}
           />
-          <Text style={styles.username}> {"Shahd"} </Text>
+          <View style={styles.profileInfo}>
+            <Text style={styles.username}> {this.state.post.username} </Text>
+            <Text style={styles.time}> {this.state.post.time} </Text>
+          </View>
         </View>
         <Image
           style={postStyle.img}
@@ -75,30 +78,37 @@ export default class Shamosa extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  love: {
-    flex: 1,
-    color: "#32baff",
-    fontSize: 50,
-    alignSelf: "center",
-    paddingBottom: 10
-  },
-  username: {
-    flex: 1,
-    fontSize: 14,
-    fontWeight: "bold",
-    fontFamily: "Helvetica",
-    color: "rgb(54, 88, 153)"
-  },
   profileContainer: {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    alignItems: "center",
+    paddingBottom: 7
   },
   profileImage: {
-    flex: 2,
     resizeMode: "cover",
     height: 50,
     width: 50,
     borderWidth: 2,
     borderRadius: 75
+  },
+  profileInfo: {
+    flex: 1,
+    flexDirection: "column"
+  },
+  username: {
+    fontSize: 14,
+    fontWeight: "bold",
+    fontFamily: "Helvetica",
+    color: "#00796B"
+  },
+  time: {
+    fontSize: 12
+  },
+  love: {
+    flex: 1,
+    color: "#009688",
+    fontSize: 50,
+    alignSelf: "center",
+    paddingBottom: 10
   }
 });

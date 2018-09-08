@@ -2,11 +2,26 @@ import { TabNavigator } from "react-navigation";
 import NewsLists from "../News/NewsLists";
 import HalqatStack from "./HalqatStack";
 import MenuStack from "./MenuStack";
-import Shamosa from "../Shamosa/ShamosaLists";
+import ShamosaLists from "../Shamosa/ShamosaLists";
 
-export default TabNavigator({
-  Shamosa: { screen: Shamosa },
-  News: { screen: NewsLists },
-  HalqatStack: { screen: HalqatStack },
-  MenuStack: { screen: MenuStack }
-});
+const tabNavigator = TabNavigator(
+  {
+    "☰": { screen: MenuStack },
+    "☀": { screen: ShamosaLists },
+    "📰": { screen: NewsLists },
+    "📖": { screen: HalqatStack }
+  },
+  {
+    tabBarOptions: {
+      style: {
+        backgroundColor: "#009688"
+      },
+      tabStyle: {
+        height: 62
+      },
+      labelStyle: { fontSize: 20 }
+    }
+  }
+);
+
+export default tabNavigator;
