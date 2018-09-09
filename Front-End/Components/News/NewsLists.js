@@ -12,31 +12,35 @@ export default class NewsLists extends React.Component {
       posts: [
         {
           imageUrl:
-            "https://st.depositphotos.com/1575949/4964/v/950/depositphotos_49641543-stock-illustration-hot-news-on-red-stamp.jpg",
+            "https://cdn3.iconfinder.com/data/icons/character/512/41-512.png",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-          adminName: "shahd"
+          username: "Admin",
+          time: "02:36pm"
         },
         {
           imageUrl:
-            "https://st.depositphotos.com/1575949/4964/v/950/depositphotos_49641543-stock-illustration-hot-news-on-red-stamp.jpg",
+            "https://cdn3.iconfinder.com/data/icons/character/512/41-512.png",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-          adminName: "shahd"
+          username: "Admin",
+          time: "02:36pm"
         },
         {
           imageUrl:
-            "https://st.depositphotos.com/1575949/4964/v/950/depositphotos_49641543-stock-illustration-hot-news-on-red-stamp.jpg",
+            "https://cdn3.iconfinder.com/data/icons/character/512/41-512.png",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-          adminName: "shahd"
+          username: "Admin",
+          time: "02:36pm"
         },
         {
           imageUrl:
-            "https://st.depositphotos.com/1575949/4964/v/950/depositphotos_49641543-stock-illustration-hot-news-on-red-stamp.jpg",
+            "https://cdn3.iconfinder.com/data/icons/character/512/41-512.png",
           text:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-          adminName: "shahd"
+          username: "Admin",
+          time: "02:36pm"
         }
       ]
     };

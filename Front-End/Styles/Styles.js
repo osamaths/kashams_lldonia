@@ -5,8 +5,8 @@ export const postStyle = {
     paddingTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#009688"
+    borderBottomColor: "#009688",
+    elevation: 10
   },
   img: {
     height: 200

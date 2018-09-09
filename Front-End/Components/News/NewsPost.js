@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-  Image
-} from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { postStyle } from "../../Styles/Styles";
+import UserInfo from "../SharedComponents/UserInfo";
 
 export default class NewsPost extends React.Component {
   constructor(props) {
@@ -19,6 +13,11 @@ export default class NewsPost extends React.Component {
   render() {
     return (
       <View style={postStyle.container}>
+        <UserInfo
+          imageUrl={this.state.post.imageUrl}
+          username={this.state.post.username}
+          time={this.state.post.time}
+        />
         <Image
           style={postStyle.img}
           source={{ uri: this.state.post.imageUrl }}
