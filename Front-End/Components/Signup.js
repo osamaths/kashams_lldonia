@@ -95,28 +95,30 @@ export default class SignUp extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <ScrollView style={styles.container}>
-        <Form
-          type={Person}
-          ref={c => (this._form = c)}
-          options={options}
-          style={styles.form}
-        />
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => {
-            this.handelSubmit(navigate);
-          }}
-          underlayColor="blue"
-        >
-          <Text>Sign Up</Text>
-        </TouchableOpacity>
-
-        <View style={styles.signupTxt}>
-          <Text> Already have acount? </Text>
-          <TouchableOpacity underlayColor="blue">
-            <Text style={{ color: "#32baff" }}> Login</Text>
+      <ScrollView style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <Form
+            type={Person}
+            ref={c => (this._form = c)}
+            options={options}
+            style={styles.form}
+          />
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
+              this.handelSubmit(navigate);
+            }}
+            underlayColor="blue"
+          >
+            <Text>Sign Up</Text>
           </TouchableOpacity>
+
+          <View style={styles.signupTxt}>
+            <Text> Already have acount? </Text>
+            <TouchableOpacity underlayColor="blue">
+              <Text style={{ color: "#32baff" }}> Login</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     );

@@ -84,7 +84,7 @@ export default class Login extends React.Component {
         </TouchableOpacity>
 
         <View style={styles.signupTxt}>
-          <Text> Don't have an account?</Text>
+          <Text> {"Don't have an account?"}</Text>
           <TouchableOpacity
             underlayColor="blue"
             onPress={() => {

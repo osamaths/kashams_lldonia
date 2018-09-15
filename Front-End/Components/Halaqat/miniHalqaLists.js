@@ -34,11 +34,7 @@ export default class miniHalqaLists extends React.Component {
       return (
         <View>
           {array.map((miniHalqa, index) => (
-            <MiniHalqa
-              style={styles.container}
-              miniHalqa={miniHalqa}
-              key={index}
-            />
+            <MiniHalqa miniHalqa={miniHalqa} key={index} />
           ))}
         </View>
       );
@@ -61,7 +57,6 @@ export default class miniHalqaLists extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "rgba(52, 52, 52, 0.2)"
+    flex: 1
   }
 });

@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { selectAmira } from "../../Actions/amirasActions.js";
 import { mainContainerColor, textColor } from "../../Styles/Styles";
+import UserInfo from "../SharedComponents/UserInfo";
+
 export default class Amira extends React.Component {
   constructor(props) {
     super(props);
@@ -12,20 +14,23 @@ export default class Amira extends React.Component {
   }
   render() {
     return (
-      <View style={mainContainerColor}>
-        <View style={styles.container}>
-          <Text style={[textColor, styles.txt]}>Name: {this.state.name} </Text>
-          <Text style={[textColor, styles.txt]}>
-            Phone: {this.state.phone}{" "}
-          </Text>
-          <TouchableOpacity
-            onPress={() => {
-              selectAmira(this.state);
-            }}
-          >
-            <Text>إختيار</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={[styles.container, mainContainerColor]}>
+        <UserInfo
+          style={styles.userInfo}
+          username={this.state.name}
+          imageUrl={
+            "https://www.rd.com/wp-content/uploads/2016/06/01-brainy-habits-wisest-people-age-woman.jpg"
+          }
+          time={this.state.phone}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            selectAmira(this.state);
+          }}
+        >
+          <Text style={{ color: "white" }}>إختيار</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -33,11 +38,23 @@ export default class Amira extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.33,
+    flex: 1,
     flexDirection: "row",
-    padding: 10
+    justifyContent: "space-between",
+    padding: 10,
+    elevation: 10,
+    margin: 5,
+    alignSelf: "center",
+    alignItems: "center",
+    width: "95%",
+    height: "33%"
   },
-  txt: {
-    padding: 10
+  button: {
+    flex: 0.5,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#009688",
+    padding: 5,
+    height: "75%"
   }
 });

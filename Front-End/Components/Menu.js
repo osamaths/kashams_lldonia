@@ -27,7 +27,11 @@ export default class Menu extends React.Component {
       <View style={styles.container}>
         <View style={styles.btnsContainer}>
           <View style={[styles.btnContainer, { backgroundColor: "#009688" }]}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => {
+                navigate("Profile");
+              }}
+            >
               <Image
                 style={styles.profileImage}
                 source={{
@@ -72,7 +76,7 @@ export default class Menu extends React.Component {
             >
               <Image
                 style={{ width: 40, height: 40 }}
-                source={require("./Images/Icons/logout.png")}
+                source={require("../Images/Icons/logout.png")}
               />
             </TouchableOpacity>
           </View>
@@ -80,7 +84,7 @@ export default class Menu extends React.Component {
         <View style={styles.logoContainer}>
           <Image
             style={{ width: 200, height: 170 }}
-            source={require("./Images/Icons/appLogo.png")}
+            source={require("../Images/Icons/appLogo.png")}
           />
         </View>
 
@@ -100,11 +104,12 @@ var { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    backgroundColor: "black"
   },
   logoContainer: {
     flex: 2,
-    backgroundColor: "#B2DFDB",
+    backgroundColor: "rgba(0,121,107, 0.9)",
     justifyContent: "center",
     alignItems: "center"
   },

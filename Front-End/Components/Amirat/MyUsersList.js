@@ -31,7 +31,7 @@ export default class MyUsersLists extends React.Component {
       return (
         <View>
           {this.state.users.map((user, index) => (
-            <User style={styles.container} user={user} key={index} />
+            <User user={user} key={index} />
           ))}
         </View>
       );
@@ -52,8 +52,6 @@ export default class MyUsersLists extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "rgba(52, 52, 52, 0.2)",
-    paddingTop: 10
+    flex: 1
   }
 });

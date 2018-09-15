@@ -24,9 +24,9 @@ export default class AmiraLists extends React.Component {
   renderAmiras = () => {
     if (this.state.amiras.length > 0)
       return (
-        <View>
+        <View style={styles.container}>
           {this.state.amiras.map((amira, index) => (
-            <Amira style={styles.container} amira={amira} key={index} />
+            <Amira amira={amira} key={index} />
           ))}
         </View>
       );
@@ -47,8 +47,6 @@ export default class AmiraLists extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "rgba(52, 52, 52, 0.2)",
-    paddingTop: 10
+    flex: 1
   }
 });

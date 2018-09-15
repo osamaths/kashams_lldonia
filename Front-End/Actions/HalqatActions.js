@@ -25,8 +25,9 @@ export const callUser = user => {
 // Fake data
 var fakeHalqat = [
   {
-    name: "تجويد",
-    description: "words words words",
+    name: "Tajweed",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     image:
       "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50",
     miniHalqat: [
@@ -57,8 +58,8 @@ var fakeHalqat = [
     ]
   },
   {
-    name: "أحكام",
-    description: "words words words",
+    name: "Tajweed",
+    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     image:
       "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50",
     miniHalqat: [
@@ -95,28 +96,8 @@ var fakeHalqat = [
     ]
   },
   {
-    name: "تسميع",
-    description: "words words words",
-    image:
-      "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50",
-    miniHalqat: [
-      {
-        _id: "1",
-        name: "جزء عمّ",
-        time: "23/2/2018 11:00am",
-        place: "العلمية"
-      },
-      {
-        _id: "1",
-        name: "الكهف",
-        time: "21/2/2018 11:00am",
-        place: "KASIT"
-      }
-    ]
-  },
-  {
-    name: "تسميع",
-    description: "words words words",
+    name: "Tajweed",
+    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     image:
       "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50",
     miniHalqat: [
