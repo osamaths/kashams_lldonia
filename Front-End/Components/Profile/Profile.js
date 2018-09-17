@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { getMyPosts, getMyInfo } from "../../Actions/ProfileActions";
-import Shamosa from "../Shamosa/Shamosa";
+import MyShamosa from "./MyShamosa";
 import MyInfo from "./MyInfo";
 
 export default class Profile extends React.Component {
@@ -13,7 +13,8 @@ export default class Profile extends React.Component {
     super(props);
     this.state = {
       posts: "",
-      profileInfo: ""
+      profileInfo: "",
+      isRenderNow: true
     };
   }
   componentDidMount() {
@@ -25,7 +26,9 @@ export default class Profile extends React.Component {
       this.setState({ posts: tempPosts });
     }
   }
-
+  componentWillReceiveProps() {
+    this.setState({ isRenderNow: true });
+  }
   renderMyInfo = () => {
     if (this.state.profileInfo != "") {
       return (
@@ -41,7 +44,7 @@ export default class Profile extends React.Component {
       return (
         <View style={styles.container}>
           {this.state.posts.map((post, index) => (
-            <Shamosa post={post} key={index} />
+            <MyShamosa post={post} key={index} />
           ))}
         </View>
       );
@@ -54,12 +57,15 @@ export default class Profile extends React.Component {
   };
 
   render() {
-    return (
-      <ScrollView>
-        {this.renderMyInfo()}
-        {this.renderPosts()}
-      </ScrollView>
-    );
+    if (this.state.isRenderNow) {
+      return (
+        <ScrollView>
+          {this.renderMyInfo()}
+          {this.renderPosts()}
+        </ScrollView>
+      );
+      this.setState({ isRenderNow: false });
+    }
   }
 }
 

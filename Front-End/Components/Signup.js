@@ -110,13 +110,18 @@ export default class SignUp extends React.Component {
             }}
             underlayColor="blue"
           >
-            <Text>Sign Up</Text>
+            <Text style={{ color: "white" }}>Sign Up</Text>
           </TouchableOpacity>
 
           <View style={styles.signupTxt}>
             <Text> Already have acount? </Text>
-            <TouchableOpacity underlayColor="blue">
-              <Text style={{ color: "#32baff" }}> Login</Text>
+            <TouchableOpacity
+              underlayColor="blue"
+              onPress={() => {
+                navigate("Login");
+              }}
+            >
+              <Text style={{ color: "#009688" }}> Login</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -136,16 +141,18 @@ const styles = StyleSheet.create({
     padding: 0
   },
   btn: {
-    backgroundColor: "#32baff",
+    backgroundColor: "#009688",
     width: 300,
     height: 60,
     borderRadius: 10,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    alignSelf: "center"
   },
   signupTxt: {
     flexDirection: "row",
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    alignSelf: "center"
   }
 });

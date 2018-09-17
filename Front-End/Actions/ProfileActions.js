@@ -8,6 +8,10 @@ export const changeMyInfo = (changes, cb) => {
   if (true) cb(false);
 };
 
+export const reqDeleteShamosa = _id => {
+  return true;
+};
+
 export const getMyInfo = () => {
   console.log("getMyInfo");
   var myInfo = {
@@ -29,8 +33,9 @@ export const getMyPosts = () => {
   return fakeData;
 };
 
-fakeData = [
+export const fakeData = [
   {
+    _id: "1111",
     imageUrl:
       "https://www.rd.com/wp-content/uploads/2016/06/01-brainy-habits-wisest-people-age-woman.jpg",
     text:
@@ -39,6 +44,7 @@ fakeData = [
     time: "10:30pm"
   },
   {
+    _id: "2222",
     imageUrl:
       "https://www.rd.com/wp-content/uploads/2016/06/01-brainy-habits-wisest-people-age-woman.jpg",
     text:
@@ -47,6 +53,7 @@ fakeData = [
     time: "1:30pm"
   },
   {
+    _id: "3333",
     imageUrl:
       "https://www.rd.com/wp-content/uploads/2016/06/01-brainy-habits-wisest-people-age-woman.jpg",
     text:
@@ -55,6 +62,7 @@ fakeData = [
     time: "10:00am"
   },
   {
+    _id: "4444",
     imageUrl:
       "https://www.rd.com/wp-content/uploads/2016/06/01-brainy-habits-wisest-people-age-woman.jpg",
     text:

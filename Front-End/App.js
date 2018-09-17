@@ -4,7 +4,7 @@ import { StackNavigator } from "react-navigation";
 
 import TabNavigation from "./Components/TabNavigators/TabNavigation";
 import AccessNavigator from "./Components/TabNavigators/AccessNavigator";
-import Profile from "./Components/Profile/profile";
+import Profile from "./Components/Profile/Profile";
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ export default class App extends React.Component {
 
 const AppStack = StackNavigator({
   // Login: { screen: AccessNavigator },
-  Home: { screen: TabNavigation },
+  // Home: { screen: TabNavigation },
   Profile: { screen: Profile }
 });
 
