@@ -12,27 +12,17 @@ export default class MyShamosa extends React.Component {
       post: this.props.post,
       blah: "blah",
       isDeleted: false,
-      fakeData: fakeData
+      fakeData: fakeData,
+      navigate: this.props.navigate,
+      deleteShamosa: this.props.deleteShamosa
     };
-    this.deleteShamosa = this.deleteShamosa.bind(this);
   }
-
-  deleteShamosa(itemValue) {
-    if (itemValue === "delete") {
-      for (var i = 0; i < fakeData.length; i++) {
-        if (fakeData[i]._id === this.state.post._id) {
-          fakeData.splice(i, 1);
-        }
-      }
-    }
-    // this.props.navigation.pop({ refresh: { isRenderNow: true } });
+  checkDelete(itemValue) {
+    if (itemValue === "delete") this.state.deleteShamosa(this.state.post._id);
   }
-
   render() {
     return (
       <View style={postStyle.container}>
-        <Text>{this.state.post._id}</Text>
-        <Text>{this.state.fakeData.length}</Text>
         <View style={styles.rowContainer}>
           <UserInfo
             imageUrl={this.state.post.imageUrl}
@@ -42,7 +32,7 @@ export default class MyShamosa extends React.Component {
           <Picker
             style={{ height: 50, width: 50 }}
             onValueChange={(itemValue, itemIndex) =>
-              this.deleteShamosa(itemValue)
+              this.checkDelete(itemValue)
             }
           >
             <Picker.Item label="-" value="" />

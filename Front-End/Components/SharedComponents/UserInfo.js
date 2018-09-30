@@ -7,7 +7,7 @@ export default class UserInfo extends React.Component {
     this.state = {
       imageUrl: this.props.imageUrl || "../Images/Icons/avatar.png",
       username: this.props.username || "Not Found",
-      time: this.props.time || "00:00"
+      time: this.props.time || ""
     };
   }
 

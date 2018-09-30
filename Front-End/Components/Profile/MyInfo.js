@@ -11,16 +11,19 @@ import {
 import EditProfile from "./EditProfile";
 import { postStyle, mainContainerColor } from "../../Styles/Styles";
 import { YellowBox } from "react-native";
+
 YellowBox.ignoreWarnings([
   "Warning: isMounted(...) is deprecated",
   "Module RCTImageLoader"
 ]);
+
 export default class MyInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       profileInfo: this.props.profileInfo,
-      modalVisible: false
+      modalVisible: false,
+      extraStyle: this.props.extraStyle
     };
     this.setModalVisible = this.setModalVisible.bind(this);
   }
@@ -31,13 +34,11 @@ export default class MyInfo extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={this.chooseImage}>
-          <Image
-            style={styles.avatar}
-            source={{ uri: this.state.profileInfo.avatar }}
-          />
-        </TouchableOpacity>
+      <View style={[styles.container, this.state.extraStyle]}>
+        <Image
+          style={styles.avatar}
+          source={{ uri: this.state.profileInfo.avatar }}
+        />
 
         <Text style={styles.username}>{this.state.profileInfo.username}</Text>
         <TouchableOpacity
@@ -45,7 +46,12 @@ export default class MyInfo extends React.Component {
             this.setModalVisible(true);
           }}
         >
-          <Text style={{ fontSize: 10, fontWeight: "bold", paddingBottom: 10 }}>
+          <Text
+            style={[
+              { fontSize: 10, fontWeight: "bold", paddingBottom: 10 },
+              this.props.textColor
+            ]}
+          >
             {"Edit Profile 🖍"}
           </Text>
         </TouchableOpacity>

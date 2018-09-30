@@ -6,9 +6,13 @@ import {
   Text,
   Dimensions,
   Image,
-  Platform
+  Platform,
+  ImageBackground
 } from "react-native";
 import { logout } from "../Actions/AccessActions";
+import { getMyInfo } from "../Actions/ProfileActions";
+import UserInfo from "./SharedComponents/UserInfo";
+import MyInfo from "./Profile/MyInfo";
 import { mainContainerColor, textColor, btnColor } from "../Styles/Styles";
 
 export default class Menu extends React.Component {
@@ -22,27 +26,31 @@ export default class Menu extends React.Component {
   }
 
   render() {
+    const myInfo = getMyInfo();
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <View style={styles.btnsContainer}>
-          <View style={[styles.btnContainer, { backgroundColor: "#009688" }]}>
+      <ImageBackground
+        style={styles.container}
+        source={require("../Images/background.jpg")}
+      >
+        <View style={{ flex: 1, alignItems: "center" }}>
+          <TouchableOpacity
+            style={{ width: "100%", height: "100%" }}
+            onPress={() => {
+              navigate("Profile");
+            }}
+          >
+            <MyInfo
+              profileInfo={myInfo}
+              extraStyle={styles.transparentBackground}
+              textColor={{ color: "#D6FFFF" }}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.columnContainer}>
+          <View style={[styles.btnContainer, { marginTop: 5 }]}>
             <TouchableOpacity
-              onPress={() => {
-                navigate("Profile");
-              }}
-            >
-              <Image
-                style={styles.profileImage}
-                source={{
-                  uri:
-                    "https://www.rd.com/wp-content/uploads/2016/06/01-brainy-habits-wisest-people-age-woman.jpg"
-                }}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={[styles.btnContainer, { backgroundColor: "#00796B" }]}>
-            <TouchableOpacity
+              style={styles.btn}
               onPress={() => {
                 navigate("AmiraLists");
               }}
@@ -50,8 +58,9 @@ export default class Menu extends React.Component {
               <Text style={styles.btnText}>{"حجز أميرة"}</Text>
             </TouchableOpacity>
           </View>
-          <View style={[styles.btnContainer, { backgroundColor: "#009688" }]}>
+          <View style={styles.btnContainer}>
             <TouchableOpacity
+              style={styles.btn}
               onPress={() => {
                 navigate("MyUsersList");
               }}
@@ -59,8 +68,9 @@ export default class Menu extends React.Component {
               <Text style={styles.btnText}>{"التسميع الفردي"}</Text>
             </TouchableOpacity>
           </View>
-          <View style={[styles.btnContainer, { backgroundColor: "#00796B" }]}>
+          <View style={styles.btnContainer}>
             <TouchableOpacity
+              style={styles.btn}
               onPress={() => {
                 navigate("AddNews");
               }}
@@ -68,35 +78,18 @@ export default class Menu extends React.Component {
               <Text style={styles.btnText}>{"تنزيل خبر"}</Text>
             </TouchableOpacity>
           </View>
-          <View style={[styles.btnContainer, { backgroundColor: "#009688" }]}>
+          <View style={[styles.btnContainer, { marginBottom: 2 }]}>
             <TouchableOpacity
+              style={styles.btn}
               onPress={() => {
                 logout();
               }}
             >
-              <Image
-                style={{ width: 40, height: 40 }}
-                source={require("../Images/Icons/logout.png")}
-              />
+              <Text style={styles.btnText}>{"الخروج"}</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.logoContainer}>
-          <Image
-            style={{ width: 200, height: 170 }}
-            source={require("../Images/Icons/appLogo.png")}
-          />
-        </View>
-
-        {/* <View
-          style={{
-            width: 100,
-            height: 100,
-            backgroundColor: "skyblue",
-            elevation: 6
-          }}
-        /> */}
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -104,14 +97,18 @@ var { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    backgroundColor: "black"
+    flexDirection: "column"
   },
-  logoContainer: {
+  columnContainer: {
     flex: 2,
-    backgroundColor: "rgba(0,121,107, 0.9)",
-    justifyContent: "center",
+    flexDirection: "column",
+    justifyContent: "space-between",
     alignItems: "center"
+  },
+  rowContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   btnsContainer: {
     flex: 1,
@@ -121,27 +118,34 @@ const styles = StyleSheet.create({
     elevation: 10,
     backgroundColor: "black"
   },
-  profileImage: {
-    resizeMode: "cover",
-    height: 60,
-    width: 60,
-    borderWidth: 2,
-    borderRadius: 75
-  },
-  btnLogo: {
-    width: 50,
-    height: 50
-  },
   btnContainer: {
     flex: 1,
+    backgroundColor: "rgba(36, 73, 46, 0.3)",
     justifyContent: "center",
     alignItems: "center",
-    width: width / 2.6
+    alignSelf: "center",
+    marginVertical: 1,
+    height: "70%",
+    width: "100%"
+  },
+  btn: {
+    width: "50%",
+    height: "50%",
+    alignItems: "center",
+    justifyContent: "center"
   },
   btnText: {
-    color: "#D6FFFF",
-    fontSize: 16,
-    fontFamily: "tahoma",
-    justifyContent: "center"
+    color: "white",
+    fontSize: 20,
+    fontFamily: "tahoma"
+  },
+  transparentBackground: {
+    backgroundColor: "rgba(36, 73, 46, 0.3)",
+    borderBottomColor: "rgba(0, 0, 0, 0)",
+    elevation: 1,
+    paddingTop: 10
+  },
+  backgroundTransparence: {
+    backgroundColor: "rgba(0.91, 0.91, 0.91, 0.6)"
   }
 });

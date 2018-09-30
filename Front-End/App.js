@@ -5,6 +5,7 @@ import { StackNavigator } from "react-navigation";
 import TabNavigation from "./Components/TabNavigators/TabNavigation";
 import AccessNavigator from "./Components/TabNavigators/AccessNavigator";
 import Profile from "./Components/Profile/Profile";
+import Test from "./Test";
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="#00796B" />
+        <StatusBar hidden />
         <AppStack />
       </View>
     );
@@ -22,8 +23,8 @@ export default class App extends React.Component {
 }
 
 const AppStack = StackNavigator({
-  // Login: { screen: AccessNavigator },
-  // Home: { screen: TabNavigation },
+  Login: { screen: AccessNavigator },
+  Home: { screen: TabNavigation },
   Profile: { screen: Profile }
 });
 

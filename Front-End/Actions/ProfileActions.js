@@ -9,6 +9,7 @@ export const changeMyInfo = (changes, cb) => {
 };
 
 export const reqDeleteShamosa = _id => {
+  console.log(fakeData);
   return true;
 };
 
