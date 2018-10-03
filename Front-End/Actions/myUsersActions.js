@@ -28,28 +28,28 @@ var data = {
   people: [
     {
       avatar: "https://i.imgur.com/I80W1Q0.png",
-      username: "Shahd Jaouni",
-      phone: "0798928736"
+      username: "User 1",
+      phone: "0777777777"
     },
     {
       avatar: "https://i.imgur.com/I80W1Q0.png",
-      username: "Shahd Jaouni",
-      phone: "0798928736"
+      username: "User 2",
+      phone: "0777777777"
     },
     {
       avatar: "https://i.imgur.com/I80W1Q0.png",
-      username: "Shahd Jaouni",
-      phone: "0798928736"
+      username: "User 3",
+      phone: "0777777777"
     },
     {
       avatar: "https://i.imgur.com/I80W1Q0.png",
-      username: "Shahd Jaouni",
-      phone: "0798928736"
+      username: "User 4",
+      phone: "0777777777"
     }
   ],
   amira: {
     avatar: "https://i.imgur.com/I80W1Q0.png",
-    username: "Shahd Jaouni",
-    phone: "0798928736"
+    username: "User 5",
+    phone: "0777777777"
   }
 };

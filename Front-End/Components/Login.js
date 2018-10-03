@@ -26,7 +26,8 @@ const options = {
     },
     password: {
       label: "Password",
-      error: "Enter your password."
+      error: "Enter your password.",
+      secureTextEntry: true
     }
   }
 };

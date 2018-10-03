@@ -37,11 +37,13 @@ var options = {
     },
     password: {
       label: "Password",
-      error: "Please enter your password"
+      error: "Please enter your password",
+      secureTextEntry: true
     },
     confirm: {
-      label: "Confirm",
-      error: "Please enter confirm password"
+      label: "Confirm password",
+      error: "Please enter confirm password",
+      secureTextEntry: true
     },
     year: {
       label: "Year",
