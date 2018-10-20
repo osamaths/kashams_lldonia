@@ -6,10 +6,10 @@ import ShamosaLists from "../Shamosa/ShamosaLists";
 
 const tabNavigator = TabNavigator(
   {
-    "☰": { screen: MenuStack },
     "☀": { screen: ShamosaLists },
     "📰": { screen: NewsLists },
-    "📖": { screen: HalqatStack }
+    "📖": { screen: HalqatStack },
+    "☰": { screen: MenuStack }
   },
   {
     tabBarOptions: {
