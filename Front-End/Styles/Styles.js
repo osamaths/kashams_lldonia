@@ -18,7 +18,7 @@ export const postStyle = {
 };
 
 export const mainContainerColor = {
-  flex: 1,
+  // flex: 1,
   backgroundColor: "#f4f6f7"
 };
 

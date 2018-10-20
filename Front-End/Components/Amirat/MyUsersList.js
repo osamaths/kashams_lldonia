@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import User from "./User";
 import { getMyList } from "../../Actions/myUsersActions";
+import { getMyInfo } from "../../Actions/ProfileActions";
 
 export default class MyUsersLists extends React.Component {
   static navigationOptions = {
@@ -16,13 +17,16 @@ export default class MyUsersLists extends React.Component {
   }
 
   componentDidMount() {
+    let myType = getMyInfo().type;
     let data = getMyList();
     let tempUsers;
-    if (data.userType === "normal") {
+
+    if (myType != "amira") {
       tempUsers = [data.amira];
-    } else if (data.userType === "amira") {
+    } else {
       tempUsers = data.people;
     }
+
     if (tempUsers && tempUsers.length > 0) this.setState({ users: tempUsers });
   }
 

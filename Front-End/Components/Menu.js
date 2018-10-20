@@ -14,6 +14,7 @@ import { getMyInfo } from "../Actions/ProfileActions";
 import UserInfo from "./SharedComponents/UserInfo";
 import MyInfo from "./Profile/MyInfo";
 import { mainContainerColor, textColor, btnColor } from "../Styles/Styles";
+import MenuButton from "./MenuButton";
 
 export default class Menu extends React.Component {
   static navigationOptions = {
@@ -25,6 +26,66 @@ export default class Menu extends React.Component {
     this.state = {};
   }
 
+  //#region Filter on user type
+  renderNormal(navigate) {
+    return (
+      <View style={styles.columnContainer}>
+        <MenuButton
+          title={"حجز أميرة"}
+          onPress={() => navigate("AmiraLists")}
+        />
+        <MenuButton
+          title={"التسميع الفردي"}
+          onPress={() => navigate("MyUsersList")}
+        />
+        <MenuButton title={"الخروج"} onPress={() => logout()} />
+      </View>
+    );
+  }
+  renderAmira(navigate) {
+    console.log("renderAmira");
+    return (
+      <View style={styles.columnContainer}>
+        <MenuButton
+          title={"التسميع الفردي"}
+          onPress={() => navigate("MyUsersList")}
+        />
+        <MenuButton title={"الخروج"} onPress={() => logout()} />
+      </View>
+    );
+  }
+  renderAdmin(navigate) {
+    return (
+      <View style={styles.columnContainer}>
+        <MenuButton
+          title={"حجز أميرة"}
+          onPress={() => navigate("AmiraLists")}
+        />
+        <MenuButton
+          title={"التسميع الفردي"}
+          onPress={() => navigate("MyUsersList")}
+        />
+        <MenuButton title={"تنزيل خبر"} onPress={() => navigate("AddNews")} />
+        <MenuButton title={"الخروج"} onPress={() => logout()} />
+      </View>
+    );
+  }
+
+  renderButtons(navigate) {
+    let type = getMyInfo().type;
+    switch (type) {
+      case "normal":
+        return this.renderNormal(navigate);
+      case "amira":
+        return this.renderAmira(navigate);
+      case "admin":
+        return this.renderAdmin(navigate);
+      default:
+        return this.renderNormal(navigate);
+    }
+  }
+  //#endregion
+
   render() {
     const myInfo = getMyInfo();
     const { navigate } = this.props.navigation;
@@ -33,7 +94,7 @@ export default class Menu extends React.Component {
         style={styles.container}
         source={require("../Images/background.jpg")}
       >
-        <View style={{ flex: 1, alignItems: "center" }}>
+        <View style={{ flex: 1, alignItems: "center", marginBottom: 5 }}>
           <TouchableOpacity
             style={{ width: "100%", height: "100%" }}
             onPress={() => {
@@ -47,48 +108,7 @@ export default class Menu extends React.Component {
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.columnContainer}>
-          <View style={[styles.btnContainer, { marginTop: 5 }]}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => {
-                navigate("AmiraLists");
-              }}
-            >
-              <Text style={styles.btnText}>{"حجز أميرة"}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.btnContainer}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => {
-                navigate("MyUsersList");
-              }}
-            >
-              <Text style={styles.btnText}>{"التسميع الفردي"}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.btnContainer}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => {
-                navigate("AddNews");
-              }}
-            >
-              <Text style={styles.btnText}>{"تنزيل خبر"}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={[styles.btnContainer, { marginBottom: 2 }]}>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => {
-                logout();
-              }}
-            >
-              <Text style={styles.btnText}>{"الخروج"}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        {this.renderButtons(navigate)}
       </ImageBackground>
     );
   }
@@ -118,27 +138,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     backgroundColor: "black"
   },
-  btnContainer: {
-    flex: 1,
-    backgroundColor: "rgba(36, 73, 46, 0.3)",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    marginVertical: 1,
-    height: "70%",
-    width: "100%"
-  },
-  btn: {
-    width: "50%",
-    height: "50%",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  btnText: {
-    color: "white",
-    fontSize: 20,
-    fontFamily: "tahoma"
-  },
+
   transparentBackground: {
     backgroundColor: "rgba(36, 73, 46, 0.3)",
     borderBottomColor: "rgba(0, 0, 0, 0)",

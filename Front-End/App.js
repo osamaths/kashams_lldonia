@@ -23,7 +23,7 @@ export default class App extends React.Component {
 }
 
 const AppStack = StackNavigator({
-  Login: { screen: AccessNavigator },
+  // Login: { screen: AccessNavigator },
   Home: { screen: TabNavigation },
   Profile: { screen: Profile }
 });

@@ -24,7 +24,8 @@ export const getMyInfo = () => {
       lastname: "Jaouni"
     },
     year: 2,
-    gender: "Female"
+    gender: "Female",
+    type: "normal"
   };
 
   return myInfo;

@@ -24,7 +24,6 @@ export const callUser = user => {
 
 // Fake data
 var data = {
-  userType: "amira",
   people: [
     {
       avatar: "https://i.imgur.com/I80W1Q0.png",
@@ -49,7 +48,7 @@ var data = {
   ],
   amira: {
     avatar: "https://i.imgur.com/I80W1Q0.png",
-    username: "User 5",
+    username: "Amira 1",
     phone: "0777777777"
   }
 };
