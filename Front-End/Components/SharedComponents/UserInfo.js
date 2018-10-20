@@ -7,20 +7,32 @@ export default class UserInfo extends React.Component {
     this.state = {
       imageUrl: this.props.imageUrl || "../Images/Icons/avatar.png",
       username: this.props.username || "Not Found",
-      time: this.props.time || ""
+      extraInfo: this.props.extraInfo || [],
+      imageStyle: this.props.imageStyle || {
+        height: 50,
+        width: 50
+      }
     };
+  }
+
+  addInfoToUserInfo() {
+    return this.state.extraInfo.map((info, index) => (
+      <Text style={styles.time} key={index}>
+        {info}
+      </Text>
+    ));
   }
 
   render() {
     return (
       <View style={styles.profileContainer}>
         <Image
-          style={styles.profileImage}
+          style={[styles.profileImage, this.state.imageStyle]}
           source={{ uri: this.state.imageUrl }}
         />
         <View style={styles.profileInfo}>
           <Text style={styles.username}> {this.state.username} </Text>
-          <Text style={styles.time}> {this.state.time} </Text>
+          {this.addInfoToUserInfo()}
         </View>
       </View>
     );
@@ -35,10 +47,9 @@ const styles = StyleSheet.create({
   },
   profileImage: {
     resizeMode: "cover",
-    height: 50,
-    width: 50,
     borderWidth: 2,
-    borderRadius: 75
+    borderRadius: 20,
+    marginRight: 5
   },
   profileInfo: {
     flex: 1,

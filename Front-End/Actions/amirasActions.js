@@ -40,22 +40,34 @@ export const selectAmira = amira => {
 var fakeAmiras = [
   {
     avatar: "https://i.imgur.com/I80W1Q0.png",
-    name: "Shahd Jaouni",
+    firstname: "Shahd",
+    lastname: "Jaouni",
+    major: "Computer Science",
+    year: 2,
     phone: "0785352060"
   },
   {
     avatar: "https://i.imgur.com/I80W1Q0.png",
-    name: "Abdulrahman Daja",
+    firstname: "Shahd",
+    lastname: "Jaouni",
+    major: "Computer Science",
+    year: 2,
     phone: "0785352060"
   },
   {
     avatar: "https://i.imgur.com/I80W1Q0.png",
-    name: "Shahd",
+    firstname: "Shahd",
+    lastname: "Jaouni",
+    major: "Computer Science",
+    year: 2,
     phone: "0785352060"
   },
   {
     avatar: "https://i.imgur.com/I80W1Q0.png",
-    name: "Shahd",
+    firstname: "Shahd",
+    lastname: "Jaouni",
+    major: "Computer Science",
+    year: 2,
     phone: "0785352060"
   }
 ];

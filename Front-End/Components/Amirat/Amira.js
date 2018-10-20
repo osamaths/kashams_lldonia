@@ -8,8 +8,11 @@ export default class Amira extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.amira.name,
-      phone: this.props.amira.phone
+      firstname: this.props.amira.firstname,
+      lastname: this.props.amira.lastname,
+      phone: this.props.amira.phone,
+      major: this.props.amira.major,
+      year: this.props.amira.year
     };
   }
   render() {
@@ -17,11 +20,15 @@ export default class Amira extends React.Component {
       <View style={[styles.container, mainContainerColor]}>
         <UserInfo
           style={styles.userInfo}
-          username={this.state.name}
+          username={this.state.firstname + " " + this.state.lastname}
           imageUrl={
             "https://www.rd.com/wp-content/uploads/2016/06/01-brainy-habits-wisest-people-age-woman.jpg"
           }
-          time={this.state.phone}
+          extraInfo={[this.state.major, this.state.phone, this.state.year]}
+          imageStyle={{
+            height: 75,
+            width: 75
+          }}
         />
         <TouchableOpacity
           style={styles.button}
@@ -55,6 +62,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#009688",
     padding: 5,
-    height: "75%"
+    height: 75,
+    width: 75,
+    borderRadius: 10
   }
 });
