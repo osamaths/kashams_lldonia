@@ -20,7 +20,8 @@ export default class miniHalqa extends React.Component {
       _id: this.props.miniHalqa._id,
       name: this.props.miniHalqa.name,
       time: this.props.miniHalqa.time,
-      place: this.props.miniHalqa.place
+      place: this.props.miniHalqa.place,
+      length: this.props.miniHalqa.length
     };
   }
   render() {
@@ -45,6 +46,10 @@ export default class miniHalqa extends React.Component {
           <View style={styles.infoGroup}>
             <Text style={styles.mainTitle}> Place: </Text>
             <Text style={styles.infoValue}>{this.state.place}</Text>
+          </View>
+          <View style={styles.infoGroup}>
+            <Text style={styles.mainTitle}> Students: </Text>
+            <Text style={styles.mainTitle}>{this.state.length}</Text>
           </View>
           <TouchableOpacity
             style={styles.button}
@@ -107,6 +112,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#009688",
-    padding: 10
+    padding: 10,
+    marginTop: 5
   }
 });

@@ -35,31 +35,36 @@ var fakeHalqat = [
         _id: "1",
         name: "المد الجازم",
         time: "2/2/2018 2:00am",
-        place: "KASIT"
+        place: "KASIT",
+        length: 10
       },
       {
         _id: "2",
         name: "المد اللازم",
         time: "28/5/2018 1:00am",
-        place: "KASIT"
+        place: "KASIT",
+        length: 13
       },
       {
         _id: "3",
         name: "blah",
         time: "28/2/2018 11:00am",
-        place: "KASIT"
+        place: "KASIT",
+        length: 5
       },
       {
         _id: "4",
         name: "blah",
         time: "28/2/2018 11:00am",
-        place: "KASIT"
+        place: "KASIT",
+        length: 0
       }
     ]
   },
   {
     name: "Tajweed",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     image:
       "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50",
     miniHalqat: [
@@ -67,37 +72,43 @@ var fakeHalqat = [
         _id: "1",
         name: "الادغام",
         time: "28/2/2018 10:00am",
-        place: "KASIT"
+        place: "KASIT",
+        length: 25
       },
       {
         _id: "1",
         name: "الميم الساكنة",
         time: "28/2/2018 12:00pm",
-        place: "KASIT"
+        place: "KASIT",
+        length: 21
       },
       {
         _id: "1",
         name: "النون الساكنة",
         time: "28/2/2018 2:00pm",
-        place: "KASIT"
+        place: "KASIT",
+        length: 35
       },
       {
         _id: "1",
         name: "النون الساكنة",
         time: "28/2/2018 2:00pm",
-        place: "KASIT"
+        place: "KASIT",
+        length: 5
       },
       {
         _id: "1",
         name: "النون الساكنة",
         time: "28/2/2018 2:00pm",
-        place: "KASIT"
+        place: "KASIT",
+        length: 14
       }
     ]
   },
   {
     name: "Tajweed",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     image:
       "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50",
     miniHalqat: [
@@ -105,13 +116,15 @@ var fakeHalqat = [
         _id: "1",
         name: "جزء عمّ",
         time: "23/2/2018 11:00am",
-        place: "العلمية"
+        place: "العلمية",
+        length: 25
       },
       {
         _id: "1",
         name: "الكهف",
         time: "21/2/2018 11:00am",
-        place: "KASIT"
+        place: "KASIT",
+        length: 2
       }
     ]
   }
