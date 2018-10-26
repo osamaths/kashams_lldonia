@@ -3,18 +3,14 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Text,
   Dimensions,
-  Image,
-  Platform,
   ImageBackground
 } from "react-native";
 import { logout } from "../Actions/AccessActions";
 import { getMyInfo } from "../Actions/ProfileActions";
-import UserInfo from "./SharedComponents/UserInfo";
 import MyInfo from "./Profile/MyInfo";
-import { mainContainerColor, textColor, btnColor } from "../Styles/Styles";
 import MenuButton from "./MenuButton";
+import { NavigationActions } from "react-navigation";
 
 export default class Menu extends React.Component {
   static navigationOptions = {
@@ -38,7 +34,17 @@ export default class Menu extends React.Component {
           title={"التسميع الفردي"}
           onPress={() => navigate("MyUsersList")}
         />
-        <MenuButton title={"الخروج"} onPress={() => logout()} />
+        <MenuButton
+          title={"الخروج"}
+          onPress={() => {
+            console.log(NavigationActions);
+            NavigationActions.reset({
+              key: null,
+              index: 0,
+              actions: [NavigationActions.navigate({ routeName: "Login" })]
+            });
+          }}
+        />
       </View>
     );
   }
@@ -50,7 +56,10 @@ export default class Menu extends React.Component {
           title={"التسميع الفردي"}
           onPress={() => navigate("MyUsersList")}
         />
-        <MenuButton title={"الخروج"} onPress={() => logout()} />
+        <MenuButton
+          title={"الخروج"}
+          onPress={() => logout(this.props.navigator)}
+        />
       </View>
     );
   }
@@ -66,7 +75,10 @@ export default class Menu extends React.Component {
           onPress={() => navigate("MyUsersList")}
         />
         <MenuButton title={"تنزيل خبر"} onPress={() => navigate("AddNews")} />
-        <MenuButton title={"الخروج"} onPress={() => logout()} />
+        <MenuButton
+          title={"الخروج"}
+          onPress={() => logout(this.props.navigator)}
+        />
       </View>
     );
   }
