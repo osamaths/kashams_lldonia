@@ -1,15 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { postStyle } from "../../Styles/Styles";
+import { View, Text, Image } from "react-native";
 import UserInfo from "../SharedComponents/UserInfo";
+import Love from "../SharedComponents/Love";
+import { postStyle } from "../../Styles/Styles";
 
-export default class NewsPost extends React.Component {
+export default class Shamosa extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       post: this.props.post
     };
   }
+
   render() {
     return (
       <View style={postStyle.container}>
@@ -23,9 +25,8 @@ export default class NewsPost extends React.Component {
           source={{ uri: this.state.post.imageUrl }}
         />
         <Text style={postStyle.txt}> {this.state.post.text} </Text>
+        <Love />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({});

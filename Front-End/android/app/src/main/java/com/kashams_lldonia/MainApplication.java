@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import com.imagepicker.ImagePickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage; // To upload multipart form. react-native-fetch-blob
-
+import com.oblador.vectoricons.VectorIconsPackage; // VectorIconsPackage
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,7 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new ImagePickerPackage(),
-          new RNFetchBlobPackage() // To upload multipart form. react-native-fetch-blob
+          new RNFetchBlobPackage(), // To upload multipart form. react-native-fetch-blob
+          new VectorIconsPackage()
       );
     }
 

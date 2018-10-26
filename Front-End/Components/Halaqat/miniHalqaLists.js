@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import miniHalqa from "./miniHalqa";
+import MiniHalqa from "./miniHalqa";
 import { getMyList } from "../../Actions/HalqatActions";
 
 export default class miniHalqaLists extends React.Component {
@@ -11,11 +11,12 @@ export default class miniHalqaLists extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      minihalqat: ""
+      data: this.props.navigation.state.params.data
     };
   }
 
   componentDidMount() {
+    console.log("miniHalqaLists");
     // let tempMiniHalqat = getMyList();
     // if (tempMiniHalqat && tempMiniHalqat.length > 0) {
     //     this.setState({ minihalqat: tempMiniHalqat });
@@ -29,16 +30,11 @@ export default class miniHalqaLists extends React.Component {
             time: this.state.miniHalqat.time,
             place: this.state.miniHalqa.place
         }) */
-    console.log("miniHalqaLists, miniHalqat: ", array.length);
-    if (this.state.array.length > 0)
+    if (array.length > 0)
       return (
         <View>
-          {this.state.array.map((miniHalqa, index) => (
-            <miniHalqa
-              style={styles.container}
-              miniHalqa={miniHalqa}
-              key={index}
-            />
+          {array.map((miniHalqa, index) => (
+            <MiniHalqa miniHalqa={miniHalqa} key={index} />
           ))}
         </View>
       );
@@ -51,10 +47,9 @@ export default class miniHalqaLists extends React.Component {
   };
 
   render() {
-    const miniHalqat = this.props.navigation.getParams("miniHalqat", "");
     return (
       <ScrollView style={styles.container}>
-        {this.renderMyList(miniHalqat)}
+        {this.renderMyList(this.state.data.miniHalqat)}
       </ScrollView>
     );
   }
@@ -62,7 +57,6 @@ export default class miniHalqaLists extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "rgba(52, 52, 52, 0.2)"
+    flex: 1
   }
 });

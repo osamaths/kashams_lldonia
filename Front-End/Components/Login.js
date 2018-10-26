@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-  Alert
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import t from "tcomb-form-native";
 
 var Form = t.form.Form;
@@ -25,34 +18,39 @@ const options = {
     },
     password: {
       label: "Password",
-      error: "Enter your password."
+      error: "Enter your password.",
+      secureTextEntry: true
     }
   }
 };
 
 checkLoginData = (userData, navigate) => {
   if (userData) {
-    fetch("http://192.168.174.128:3005/user/login", {
+    var req = {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        Accepts: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(userData)
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(responseJson => {
-        if (responseJson === true) {
-          navigate("Home");
-        } else {
-          alert(responseJson.message);
-        }
-      })
-      .catch(err => {
-        throw err;
-      });
+    };
+    var url = "https://kashams-lldonia.herokuapp.com/user/login";
+
+    // fetch(url, req)
+    //   .then(response => {
+    //     return response.json();
+    //   })
+    //   .then(responseJson => {
+    //     if (responseJson === true) {
+    //       navigate("Home");
+    //     } else {
+    //       alert(responseJson.message);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     throw err;
+    //   });
+    navigate("Home");
   }
 };
 export default class Login extends React.Component {
@@ -68,6 +66,10 @@ export default class Login extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Image
+          source={require("../Images/Icons/appLogo.png")}
+          style={{ width: 170, height: 150, alignSelf: "center" }}
+        />
         <Form type={Person} ref={c => (this._form = c)} options={options} />
         <TouchableOpacity
           style={styles.btn}
@@ -76,18 +78,18 @@ export default class Login extends React.Component {
           }}
           underlayColor="blue"
         >
-          <Text>Login</Text>
+          <Text style={{ color: "white" }}>Login</Text>
         </TouchableOpacity>
 
         <View style={styles.signupTxt}>
-          <Text> Don't have an account?</Text>
+          <Text> {"Don't have an account?"}</Text>
           <TouchableOpacity
             underlayColor="blue"
             onPress={() => {
               navigate("SignUp");
             }}
           >
-            <Text style={{ color: "#32baff" }}> SignUp</Text>
+            <Text style={{ color: "#009688" }}> SignUp</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -103,15 +105,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff"
   },
   btn: {
-    backgroundColor: "#32baff",
+    backgroundColor: "#009688",
     width: 300,
     height: 60,
     borderRadius: 10,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    alignSelf: "center"
   },
   signupTxt: {
     flexDirection: "row",
-    marginTop: 10
+    marginTop: 10,
+    alignSelf: "center"
   }
 });

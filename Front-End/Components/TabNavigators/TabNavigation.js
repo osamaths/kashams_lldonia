@@ -1,16 +1,27 @@
 import { TabNavigator } from "react-navigation";
 import NewsLists from "../News/NewsLists";
-import AddNews from "../News/AddNews";
-import AmiraLists from "../Amirat/AmiraLists";
-import MyUsersList from "../Amirat/MyUsersList";
-import HalqaLists from "../Halaqat/HalqaLists";
-import HalqatStack from "../TabNavigators/HalqatStack";
+import HalqatStack from "./HalqatStack";
+import MenuStack from "./MenuStack";
+import ShamosaLists from "../Shamosa/ShamosaLists";
 
-export default TabNavigator({
-  // "حلقة": { screen: miniHalqa },
-  HalqatStack: { screen: HalqatStack },
-  "My List": { screen: MyUsersList },
-  Amiras: { screen: AmiraLists },
-  News: { screen: NewsLists },
-  "Add News": { screen: AddNews }
-});
+const tabNavigator = TabNavigator(
+  {
+    "☀": { screen: ShamosaLists },
+    "📰": { screen: NewsLists },
+    "📖": { screen: HalqatStack },
+    "☰": { screen: MenuStack }
+  },
+  {
+    tabBarOptions: {
+      style: {
+        backgroundColor: "#009688"
+      },
+      tabStyle: {
+        height: 62
+      },
+      labelStyle: { fontSize: 20 }
+    }
+  }
+);
+
+export default tabNavigator;

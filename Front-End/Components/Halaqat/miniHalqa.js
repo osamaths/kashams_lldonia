@@ -1,5 +1,14 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Image, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Text,
+  Dimensions
+} from "react-native";
+import { reserveMiniHalqa } from "../../Actions/miniHalqaActions";
+import { mainContainerColor, postStyle, textColor } from "../../Styles/Styles";
 
 export default class miniHalqa extends React.Component {
   static navigationOptions = {
@@ -8,76 +17,102 @@ export default class miniHalqa extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.navigation.miniHalqa.name,
-      time: this.props.navigation.miniHalqa.time,
-      place: this.props.navigation.miniHalqa.place
+      _id: this.props.miniHalqa._id,
+      name: this.props.miniHalqa.name,
+      time: this.props.miniHalqa.time,
+      place: this.props.miniHalqa.place,
+      length: this.props.miniHalqa.length
     };
   }
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity>
-          <Image
-            style={styles.circleImage}
-            source={{
-              uri:
-                "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50"
+      <View style={[styles.container, mainContainerColor]}>
+        <Image
+          style={styles.circleImage}
+          source={{
+            uri:
+              "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50"
+          }}
+        />
+        <View style={styles.info}>
+          <View style={styles.infoGroup}>
+            <Text style={styles.mainTitle}> Name: </Text>
+            <Text style={styles.infoValue}>{this.state.name}</Text>
+          </View>
+          <View style={styles.infoGroup}>
+            <Text style={styles.mainTitle}> Time: </Text>
+            <Text style={styles.infoValue}>{this.state.time}</Text>
+          </View>
+          <View style={styles.infoGroup}>
+            <Text style={styles.mainTitle}> Place: </Text>
+            <Text style={styles.infoValue}>{this.state.place}</Text>
+          </View>
+          <View style={styles.infoGroup}>
+            <Text style={styles.mainTitle}> Students: </Text>
+            <Text style={styles.mainTitle}>{this.state.length}</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              reserveMiniHalqa(this.state);
             }}
-          />
-          <Text> {"أسم الحلقة: " + this.state.name}</Text>
-          <Text> {"الوقت: " + this.state.time}</Text>
-          <Text> {"المصلى: " + this.state.place}</Text>
-        </TouchableOpacity>
+          >
+            <Text style={{ color: "white" }}>{"Have a Seat"}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 
-/* render() {
-  const { navigation } = this.props;
-  const name = navigation.getParam('name', 'Untitled');
-  const time = navigation.getParam('time', 'No time');
-  const place = navigation.getParam('place', 'No place');
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity>
-        <Image
-          style={styles.circleImage}
-          source={{
-            uri: 'https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50'
-          }}
-        />
-        <Text> {"أسم الحلقة: " + JSON.stringify(name)}</Text>
-        <Text> {"الوقت: " + JSON.stringify(time)}</Text>
-        <Text> {"المصلى: " + JSON.stringify(place)}</Text>
-
-      </TouchableOpacity>
-    </View>
-  )
-} */
+const width = Dimensions.get("screen").width;
+const height = Dimensions.get("screen").height;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.5,
-    flexWrap: "wrap",
-    backgroundColor: "rgba(52, 52, 52, 0.4)",
+    flex: 1,
     flexDirection: "row",
-    padding: 10
+    padding: 10,
+    elevation: 10,
+    margin: 5,
+    alignSelf: "center",
+    width: "95%",
+    height: "33%"
   },
   circleImage: {
-    width: 50,
-    height: 50,
-    borderWidth: 1,
+    flex: 1,
+    width: width / 3,
+    height: height / 5.5,
+    borderWidth: 2,
     borderColor: "rgba(0,0,0,0.2)",
     alignItems: "center",
-    justifyContent: "center",
-    width: 100,
-    height: 100,
-    borderRadius: 100
+    justifyContent: "center"
+  },
+  infoGroup: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  info: {
+    flex: 2,
+    flexDirection: "column",
+    paddingLeft: 5,
+    justifyContent: "space-between"
+  },
+  mainTitle: {
+    fontWeight: "bold",
+    color: "#009688"
+  },
+  infoValue: {
+    fontSize: 14,
+    color: "black",
+    textAlign: "left"
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
+    justifyContent: "center",
+    backgroundColor: "#009688",
+    padding: 10,
+    marginTop: 5
   }
 });

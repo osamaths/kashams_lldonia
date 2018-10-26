@@ -29,7 +29,7 @@ export default class HalqaLists extends React.Component {
       return (
         <View>
           {this.state.halqat.map((halqa, index) => (
-            <Halqa style={styles.container} halqa={halqa} key={index} />
+            <Halqa halqa={halqa} key={index} navigate={navigate} />
           ))}
         </View>
       );
@@ -53,7 +53,6 @@ export default class HalqaLists extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "rgba(52, 52, 52, 0.2)"
+    flex: 1
   }
 });

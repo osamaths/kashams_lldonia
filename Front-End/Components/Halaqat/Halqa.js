@@ -1,5 +1,13 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Image, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Text,
+  Dimensions
+} from "react-native";
+import { mainContainerColor, postStyle } from "../../Styles/Styles";
 
 export default class Halqa extends React.Component {
   static navigationOptions = {
@@ -10,26 +18,24 @@ export default class Halqa extends React.Component {
     this.state = {
       name: this.props.halqa.name,
       description: this.props.halqa.description,
-      miniHalqat: this.props.halqa.miniHalqat
+      miniHalqat: this.props.halqa.miniHalqat,
+      navigate: this.props.navigate
     };
 
     this.navigator = this.navigator.bind(this);
   }
 
-  navigator(navigate) {
-    console.log("Halqa, miniHalqat.length:", this.state.miniHalqat.length);
-    // navigate("miniHalqaLists");
+  navigator() {
+    this.state.navigate("miniHalqatLists", { data: this.state });
+    console.log("Halqa, miniHalqat.length:", this.state);
   }
 
   render() {
-    const { navigate } = this.props.navigation;
-    console.log("Halqa");
-
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, mainContainerColor]}>
         <TouchableOpacity
           onPress={() => {
-            this.navigator(navigate);
+            this.navigator();
           }}
         >
           <Image
@@ -39,36 +45,47 @@ export default class Halqa extends React.Component {
                 "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50"
             }}
           />
-          <Text> {this.state.name} </Text>
-          <Text> {this.state.description} </Text>
         </TouchableOpacity>
+        <View style={styles.info}>
+          <Text style={styles.name}> {this.state.name} </Text>
+          <Text> {this.state.description} </Text>
+        </View>
       </View>
     );
   }
 }
 
+const width = Dimensions.get("screen").width;
+const height = Dimensions.get("screen").height;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 0.5,
-    flexWrap: "wrap",
-    backgroundColor: "rgba(52, 52, 52, 0.4)",
+    flex: 1,
     flexDirection: "row",
-    padding: 10
+    padding: 10,
+    elevation: 10,
+    margin: 5,
+    alignSelf: "center",
+    width: "95%",
+    height: "33%"
+  },
+  info: {
+    flex: 2,
+    flexDirection: "column",
+    paddingLeft: 10
   },
   circleImage: {
-    width: 50,
-    height: 50,
-    borderWidth: 1,
+    flex: 1,
+    width: width / 3,
+    height: height / 4.5,
+    borderWidth: 2,
     borderColor: "rgba(0,0,0,0.2)",
     alignItems: "center",
-    justifyContent: "center",
-    width: 100,
-    height: 100,
-    borderRadius: 100
+    justifyContent: "center"
   },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
+  name: {
+    fontSize: 18,
+    color: "#00796B",
+    fontWeight: "bold"
   }
 });
