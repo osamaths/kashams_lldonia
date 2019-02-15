@@ -1,10 +1,20 @@
 {
       "login": {
-            "welcome": "أهلا {{name}} بك في تطبيقنا!",
             "login_button": "تسجيل الدخول",
-            "signup_button": "تسجيل"
+            "signup_button": "إنشاء حساب",
+            "fields": {
+                  "username": {
+                       "label": "إسم المستخدم",
+                       "error": "الرجاء إدخال إسم المستخدم"
+                  },
+                  "password":{
+                        "label": "الكلمة السرية",
+                        "error": "الرجاء إدخال الكلمة السرية"
+                  }
+            },
+            "dontMsg": "ليس لديك حساب دخول؟"
       },
       "user_profile": {
-            "title": "حسابك"  
+            "title": "حسابك"
       }
 }

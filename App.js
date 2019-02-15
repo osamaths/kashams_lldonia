@@ -9,7 +9,7 @@
 
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
-import { strings } from "./locales/i18n";
+import Login from "./src/Components/Regestrations/Login";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -28,10 +28,8 @@ export default class App extends Component {
 
   render() {
     return (
-      <View>
-        <Text>{strings("login.welcome", { name: this.state.username })}</Text>
-        <Button title={strings("login.login_button")} />
-        <Button title={strings("login.signup_button")} />
+      <View style={styles.container}>
+        <Login />
       </View>
     );
   }
