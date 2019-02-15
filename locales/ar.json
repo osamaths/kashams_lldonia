@@ -1,0 +1,10 @@
+{
+      "login": {
+            "welcome": "أهلا {{name}} بك في تطبيقنا!",
+            "login_button": "تسجيل الدخول",
+            "signup_button": "تسجيل"
+      },
+      "user_profile": {
+            "title": "حسابك"  
+      }
+}
