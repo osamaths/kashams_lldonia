@@ -14,6 +14,39 @@
             },
             "dontMsg": "Don't have an account?"
       },
+      "signup": {
+            "signup_btn": "Sign Up",
+            "login_btn": "Login",
+            "fields":{
+                  "phone": {
+                        "label": "Phone Number",
+                        "error": "Please enter Phone Number."
+                   },
+                  "username": {
+                        "label": "Username",
+                        "error": "Please enter username."
+                   },
+                  "password": {
+                        "label":"Password",
+                        "error":"Please enter password."
+                  },
+                  "passwordConfirm": {    
+                        "label":"Confirm Password",
+                        "error":"Please enter confirm password"
+                  }, 
+                  "year": {      
+                        "label":"Year",
+                        "error": "Please enter your year."
+                  },
+                  "gender": {
+                        "label": "Gender",
+                        "error": "Please select your gender.",
+                        "male": "Male",
+                        "female": "Female"
+                  }
+            },
+            "haveMsg": "Already have account?"
+      },
       "user_profile": {
             "title": "Profile"
       }

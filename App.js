@@ -10,6 +10,7 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
 import Login from "./src/Components/Regestrations/Login";
+import Signup from "./src/Components/Regestrations/Signup";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -29,7 +30,7 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Login />
+        <Signup />
       </View>
     );
   }
