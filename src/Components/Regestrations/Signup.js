@@ -1,8 +1,10 @@
 import React from "react";
 import {
+  Platform,
   View,
   ScrollView,
   Text,
+  TextInput,
   StyleSheet,
   TouchableOpacity
 } from "react-native";
@@ -18,7 +20,7 @@ var Gender = t.enums({
 });
 
 var Person = t.struct({
-  phone: t.String,
+  phone: t.Number,
   username: t.String, // a required string
   password: t.String, // an optional string
   confirm: t.String, // an optional string
@@ -26,41 +28,10 @@ var Person = t.struct({
   gender: Gender
 });
 
-var options = {
-  fields: {
-    phone: {
-      label: strings("signup.fields.phone.label"),
-      error: strings("signup.fields.phone.error"),
-      returnKeyType: "next"
-    },
-    username: {
-      label: strings("signup.fields.username.label"),
-      error: strings("signup.fields.username.error"),
-      returnKeyType: "next"
-    },
-    password: {
-      label: strings("signup.fields.password.label"),
-      error: strings("signup.fields.password.error"),
-      secureTextEntry: true,
-      returnKeyType: "next"
-    },
-    confirm: {
-      label: strings("signup.fields.passwordConfirm.label"),
-      error: strings("signup.fields.passwordConfirm.error"),
-      secureTextEntry: true,
-      returnKeyType: "next"
-    },
-    year: {
-      label: strings("signup.fields.year.label"),
-      error: strings("signup.fields.year.error"),
-      returnKeyType: "next"
-    },
-    gender: {
-      label: strings("signup.fields.gender.label"),
-      error: strings("signup.fields.gender.error")
-    }
-  }
-};
+const keyboardType = Platform.select({
+  ios: "name-phone-pad",
+  android: "phone-pad"
+});
 
 sginupReq = userData => {
   if (userData) {
@@ -83,6 +54,61 @@ sginupReq = userData => {
 };
 
 export default class SignUp extends React.Component {
+  constructor() {
+    super();
+    this._getFormOptions = this._getFormOptions.bind(this);
+  }
+  _getFormOptions() {
+    return {
+      fields: {
+        phone: {
+          label: strings("signup.fields.phone.label"),
+          error: strings("signup.fields.phone.error"),
+          returnKeyType: "next",
+          autoFocus: true,
+          maxLength: 10,
+          keyboardType: keyboardType,
+          onSubmitEditing: () => {
+            this.refs.form.getComponent("username").refs.input.focus();
+          }
+        },
+        username: {
+          label: strings("signup.fields.username.label"),
+          error: strings("signup.fields.username.error"),
+          returnKeyType: "next",
+          onSubmitEditing: () => {
+            this.refs.form.getComponent("password").refs.input.focus();
+          }
+        },
+        password: {
+          label: strings("signup.fields.password.label"),
+          error: strings("signup.fields.password.error"),
+          secureTextEntry: true,
+          returnKeyType: "next",
+          onSubmitEditing: () => {
+            this.refs.form.getComponent("confirm").refs.input.focus();
+          }
+        },
+        confirm: {
+          label: strings("signup.fields.passwordConfirm.label"),
+          error: strings("signup.fields.passwordConfirm.error"),
+          secureTextEntry: true,
+          returnKeyType: "next",
+          onSubmitEditing: () => {
+            this.refs.form.getComponent("year").refs.input.focus();
+          }
+        },
+        year: {
+          label: strings("signup.fields.year.label"),
+          error: strings("signup.fields.year.error")
+        },
+        gender: {
+          label: strings("signup.fields.gender.label"),
+          error: strings("signup.fields.gender.error")
+        }
+      }
+    };
+  }
   handelSubmit = () => {
     //     const userData = this._form.getValue();
     //     console.log(userData);
@@ -91,12 +117,13 @@ export default class SignUp extends React.Component {
   };
 
   render() {
+    var options = this._getFormOptions();
     return (
       <ScrollView style={{ flex: 1 }}>
         <View style={styles.container}>
           <Form
             type={Person}
-            ref={c => (this._form = c)}
+            ref="form"
             options={options}
             style={styles.form}
           />
@@ -134,8 +161,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff"
   },
   form: {
+    flex: 1,
     flexDirection: "row",
-    padding: 0
+    paddingTop: 0,
+    backgroundColor: "red"
   },
   btn: {
     backgroundColor: "#009688",
