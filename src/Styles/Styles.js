@@ -9,7 +9,8 @@ export const postStyle = {
     elevation: 10
   },
   img: {
-    height: 200
+    height: 200,
+    marginTop: 35
   },
   txt: {
     padding: 10,

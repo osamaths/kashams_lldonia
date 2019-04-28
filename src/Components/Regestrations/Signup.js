@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import t from "tcomb-form-native";
 import { strings } from "../../../locales/i18n";
+import { Actions } from "react-native-router-flux";
 
 var Form = t.form.Form;
 
@@ -141,7 +142,13 @@ export default class SignUp extends React.Component {
 
           <View style={styles.signupTxt}>
             <Text> {strings("signup.haveMsg")} </Text>
-            <TouchableOpacity underlayColor="blue" onPress={() => {}}>
+            <TouchableOpacity
+              underlayColor="blue"
+              onPress={() => {
+                console.log(Actions);
+                Actions.testComp();
+              }}
+            >
               <Text style={{ color: "#009688" }}>
                 {" "}
                 {strings("signup.login_btn")}

@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    paddingBottom: 7
+    paddingBottom: 0,
+    paddingTop: 25
   },
   profileImage: {
     resizeMode: "cover",

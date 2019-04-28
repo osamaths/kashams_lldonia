@@ -3,9 +3,9 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { getShamosaPosts } from "../../Actions/ShamosaActions";
 import Shamosa from "./Shamosa";
 export default class ShamosaLists extends React.Component {
-  static navigationOptions = {
-    header: null
-  };
+  // static navigationOptions = {
+  //   header: null
+  // };
 
   constructor(props) {
     super(props);

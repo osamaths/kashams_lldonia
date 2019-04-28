@@ -14,7 +14,7 @@ fakeData = [
     text:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the indusLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's stry's standard dummy text ever since the 1500s.",
     username: "Shahd Jaouni",
-    time: "10:30pm"
+    extraInfo: ["time: 10:30pm"]
   },
   {
     imageUrl:
@@ -22,7 +22,7 @@ fakeData = [
     text:
       "Lorem Ipsum is sime printing and typesetting industry. dummy text ever since the 1500s.",
     username: "Osama THS",
-    time: "1:30pm"
+    extraInfo: ["time: 1:30pm"]
   },
   {
     imageUrl:
@@ -30,7 +30,7 @@ fakeData = [
     text:
       "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
     username: "Taj Osama",
-    time: "10:00am"
+    extraInfo: ["time: 10:00am"]
   },
   {
     imageUrl:
@@ -38,6 +38,6 @@ fakeData = [
     text:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     username: "Sara Al-Habarnah",
-    time: "4:30pm"
+    extraInfo: ["time: 4:30pm"]
   }
 ];

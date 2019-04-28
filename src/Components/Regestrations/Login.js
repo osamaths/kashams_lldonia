@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import t from "tcomb-form-native";
 import { strings } from "../../../locales/i18n";
+import { Actions } from "react-native-router-flux";
 
 var Form = t.form.Form;
 
@@ -94,12 +95,17 @@ export default class Login extends React.Component {
 
         <View style={styles.signupTxt}>
           <Text> {strings("login.dontMsg")}</Text>
-          <Text style={{ color: "#009688", marginLeft: 3 }}>
-            {strings("login.signup_button")}
-          </Text>
-          {/* <TouchableOpacity underlayColor="blue" onPress={() => {}}> */}
 
-          {/* </TouchableOpacity> */}
+          <TouchableOpacity
+            underlayColor="blue"
+            onPress={() => {
+              Actions.signup();
+            }}
+          >
+            <Text style={{ color: "#009688", marginLeft: 3 }}>
+              {strings("login.signup_button")}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
