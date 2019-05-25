@@ -5,7 +5,7 @@ import SignUp from "../Regestrations/Signup";
 import ShamosaLists from "../Shamosa/ShamosaLists";
 import NewsLists from "../News/NewsLists";
 import HalqaLists from "../Halaqat/HalqaLists";
-import Profile from "../Profile/Profile";
+// import Profile from "../Profile/Profile";
 import AmiraLists from "../Amirat/AmiraLists";
 
 import testComp from "./testComp";
@@ -24,7 +24,7 @@ const Routes = () => (
         <Scene key="halaqat" component={HalqaLists} hideNavBar />
         <Scene key="menu" hideNavBar drawer>
           <Scene key="profile" component={Profile} hideNavBar />
-          {/* <Scene key="privateCall" component={MyUsersLists} hideNavBar /> */}
+          <Scene key="privateCall" component={MyUsersLists} hideNavBar />
           <Scene key="selectAmira" component={AmiraLists} hideNavBar />
           <Scene key="logout" component={testComp} hideNavBar />
         </Scene>
