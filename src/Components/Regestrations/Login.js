@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import t from "tcomb-form-native";
 import { strings } from "../../../locales/i18n";
+import { Actions } from "react-native-router-flux";
 
 var Form = t.form.Form;
 
@@ -11,19 +12,7 @@ var Person = t.struct({
   password: t.String
 });
 
-const options = {
-  fields: {
-    username: {
-      label: strings("login.fields.username.label"),
-      error: strings("login.fields.username.error")
-    },
-    password: {
-      label: strings("login.fields.password.label"),
-      error: strings("login.fields.password.error"),
-      secureTextEntry: true
-    }
-  }
-};
+const options = {};
 
 checkLoginData = (userData, navigate) => {
   if (userData) {
@@ -55,14 +44,45 @@ checkLoginData = (userData, navigate) => {
   }
 };
 export default class Login extends React.Component {
+  constructor() {
+    super();
+    this._getFormOptions = this._getFormOptions.bind(this);
+  }
+
+  _getFormOptions() {
+    return {
+      fields: {
+        username: {
+          label: strings("login.fields.username.label"),
+          error: strings("login.fields.username.error"),
+          returnKeyType: "next",
+          autoFocus: true,
+          onSubmitEditing: () => {
+            this.refs.form.getComponent("password").refs.input.focus();
+          }
+        },
+        password: {
+          label: strings("login.fields.password.label"),
+          error: strings("login.fields.password.error"),
+          secureTextEntry: true,
+          returnKeyType: "done",
+          onSubmitEditing: () => {
+            console.log("Logining in...");
+          }
+        }
+      }
+    };
+  }
+
   render() {
+    var options = this._getFormOptions();
     return (
       <View style={styles.container}>
         <Image
           source={require("../../../Images/Icons/appLogo.png")}
           style={{ width: 170, height: 150, alignSelf: "center" }}
         />
-        <Form type={Person} ref={c => (this._form = c)} options={options} />
+        <Form type={Person} ref="form" options={options} />
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {}}
@@ -75,12 +95,17 @@ export default class Login extends React.Component {
 
         <View style={styles.signupTxt}>
           <Text> {strings("login.dontMsg")}</Text>
-          <Text style={{ color: "#009688", marginLeft: 3 }}>
-            {strings("login.signup_button")}
-          </Text>
-          {/* <TouchableOpacity underlayColor="blue" onPress={() => {}}> */}
 
-          {/* </TouchableOpacity> */}
+          <TouchableOpacity
+            underlayColor="blue"
+            onPress={() => {
+              Actions.signup();
+            }}
+          >
+            <Text style={{ color: "#009688", marginLeft: 3 }}>
+              {strings("login.signup_button")}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

@@ -9,7 +9,11 @@
 
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
+import Shamosa from "./src/Components/Shamosa/Shamosa";
 import Login from "./src/Components/Regestrations/Login";
+import Routes from "./src/Components/Routers/RegestrationRoutes";
+import { getShamosaPosts } from "./src/Actions/ShamosaActions";
+import { Actions } from "react-native-router-flux";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -25,11 +29,17 @@ export default class App extends Component {
       username: "Daniel"
     };
   }
-
   render() {
     return (
       <View style={styles.container}>
-        <Login />
+        <Routes />
+
+        <Button
+          title="heheheh"
+          onPress={() => {
+            Actions.reset("signup");
+          }}
+        />
       </View>
     );
   }
@@ -39,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
     backgroundColor: "#F5FCFF"
   },
   welcome: {

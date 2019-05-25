@@ -14,7 +14,101 @@
             },
             "dontMsg": "Don't have an account?"
       },
+      "signup": {
+            "signup_btn": "Sign Up",
+            "login_btn": "Login",
+            "fields":{
+                  "phone": {
+                        "label": "Phone Number",
+                        "error": "Please enter Phone Number."
+                   },
+                  "username": {
+                        "label": "Username",
+                        "error": "Please enter username."
+                   },
+                  "password": {
+                        "label":"Password",
+                        "error":"Please enter password."
+                  },
+                  "passwordConfirm": {    
+                        "label":"Confirm Password",
+                        "error":"Please enter confirm password"
+                  }, 
+                  "year": {      
+                        "label":"Year",
+                        "error": "Please enter your year."
+                  },
+                  "gender": {
+                        "label": "Gender",
+                        "error": "Please select your gender.",
+                        "male": "Male",
+                        "female": "Female"
+                  }
+            },
+            "haveMsg": "Already have account?"
+      },
       "user_profile": {
             "title": "Profile"
+      },
+      "AmiraLists": {
+            "emptyList": "There is no Amira available.",
+            "Amira": {
+                  "selectBtn": "Select"
+            }
+      },
+      "MyUsersList": {
+            "emptyList": "There are no Users."
+      },
+      "HalqaLists": {
+            "emptyList": "There is no Halqa available.",
+            "miniHalqaLists": {
+                  "emptyList": "There is no Halqa available.",
+                  "miniHalqa": {
+                        "name": "Name:",
+                        "time": "Time:",
+                        "place": "Place",
+                        "students": "Students:",
+                        "select": "Have a Seat"
+                  }
+            }
+      },
+      "NewsLists": {
+            "emptyList": "There are no News.",
+            "AddNews": {
+                  "title": "Select Image",
+                  "selectBtn": "Select Photo",
+                  "uploadBtn": "Upload"
+            }
+      },
+      "SharedComponents": {
+            "Love": {
+                  "errAlertMsg": "Somthing went wrong."
+            },
+            "UserInfo": {
+                  "defaultUsername": "Not Found"
+            }
+      },
+      "Profile": {
+            "title": "My Profile",
+            "MyInfo": {
+                  "editProfile": "Edit Profile 🖍"
+            },
+            "MyShamosaList": {
+                  "title": "My Profile",
+                  "emptyList": "There are no Posts."
+            },
+            "EditProfile": {
+                  "gender": {
+                        "title": "Gender",
+                        "male": "Male",
+                        "female": "Female",
+                        "imagePickerTitle": "Select Image",
+                        "username": "Username",
+                        "firstName": "First Name",
+                        "lastName": "Last Name",
+                        "year": "Year",
+                        "saveBtn": "Save"
+                  }
+            }
       }
 }
