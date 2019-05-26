@@ -28,13 +28,13 @@ var Form = t.form.Form;
 
 // here we are: define your domain model
 var gender = t.enums({
-  M: strings.Profile.EditProfile.gender.male,
-  F: strings.Profile.EditProfile.gender.female
+  M: strings("Profile.EditProfile.gender.male"),
+  F: strings("Profile.EditProfile.gender.female")
 });
 var options = {
   fields: {
     gender: {
-      label: strings.Profile.EditProfile.gender.title,
+      label: strings("Profile.EditProfile.gender.title"),
       style: {
         color: "#86939e"
       }
@@ -42,7 +42,7 @@ var options = {
   }
 };
 var imagePickerOptions = {
-  title: strings.Profile.EditProfile.gender.imagePickerTitle,
+  title: strings("Profile.EditProfile.gender.imagePickerTitle"),
   storageOptions: {
     skipBackup: true,
     path: "images"
@@ -51,6 +51,7 @@ var imagePickerOptions = {
 var Gender = t.struct({
   gender: gender
 });
+
 export default class EditProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -92,7 +93,10 @@ export default class EditProfile extends React.Component {
             />
           </TouchableOpacity>
 
-          <FormLabel>{strings.Profile.EditProfile.gender.username}</FormLabel>
+          <FormLabel>
+            {strings("Profile.EditProfile.gender.username")}
+          </FormLabel>
+          {console.log("^^^^^")}
           <FormInput
             onChangeText={text => {
               console.log(text, "---------------");
@@ -101,7 +105,9 @@ export default class EditProfile extends React.Component {
             value={this.state.profileInfo.username}
           />
 
-          <FormLabel>{strings.Profile.EditProfile.gender.firstname}</FormLabel>
+          <FormLabel>
+            {strings("Profile.EditProfile.gender.firstname")}
+          </FormLabel>
           <FormInput
             inputStyle={styles.text}
             onChangeText={() => {}}
@@ -109,7 +115,9 @@ export default class EditProfile extends React.Component {
             value={this.state.profileInfo.name.firstname}
           />
 
-          <FormLabel>{strings.Profile.EditProfile.gender.lastname}</FormLabel>
+          <FormLabel>
+            {strings("Profile.EditProfile.gender.lastname")}
+          </FormLabel>
           <FormInput
             inputStyle={styles.text}
             onChangeText={() => {}}
@@ -117,7 +125,7 @@ export default class EditProfile extends React.Component {
             value={this.state.profileInfo.name.lastname}
           />
 
-          <FormLabel>{strings.Profile.EditProfile.gender.year}</FormLabel>
+          <FormLabel>{strings("Profile.EditProfile.gender.year")}</FormLabel>
           <FormInput
             inputStyle={styles.text}
             onChangeText={() => {}}
@@ -132,7 +140,7 @@ export default class EditProfile extends React.Component {
             }}
           >
             <Text style={{ color: "white", fontSize: 18 }}>
-              {strings.Profile.EditProfile.gender.saveBtn}
+              {strings("Profile.EditProfile.gender.saveBtn")}
             </Text>
           </TouchableOpacity>
         </View>

@@ -48,6 +48,22 @@ var fakeAmiras = [
   },
   {
     avatar: "https://i.imgur.com/I80W1Q0.png",
+    firstname: "Farah",
+    lastname: "Jaouni",
+    major: "Computer Science",
+    year: 2,
+    phone: "0785352060"
+  },
+  {
+    avatar: "https://i.imgur.com/I80W1Q0.png",
+    firstname: "Shahd",
+    lastname: "Jaouni",
+    major: "Computer Science",
+    year: 2,
+    phone: "0785352060"
+  },
+  {
+    avatar: "https://i.imgur.com/I80W1Q0.png",
     firstname: "Shahd",
     lastname: "Jaouni",
     major: "Computer Science",

@@ -38,7 +38,7 @@ export default class Amira extends React.Component {
           }}
         >
           <Text style={{ color: "white" }}>
-            {strings.AmiraLists.Amira.selectBtn}
+            {strings("AmiraLists.Amira.selectBtn")}
           </Text>
         </TouchableOpacity>
       </View>

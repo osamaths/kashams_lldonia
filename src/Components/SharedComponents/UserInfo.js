@@ -5,7 +5,7 @@ export default class UserInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageUrl: this.props.imageUrl || "../Images/Icons/avatar.png",
+      imageUrl: this.props.imageUrl || "../../../Images/Icons/avatar.png",
       username: this.props.username || "Not Found",
       extraInfo: this.props.extraInfo || [],
       imageStyle: this.props.imageStyle || {

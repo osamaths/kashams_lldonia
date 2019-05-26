@@ -53,7 +53,7 @@ export default class MyInfo extends React.Component {
               this.props.textColor
             ]}
           >
-            {strings.Profile.MyInfo.EditProfile}
+            {strings("Profile.MyInfo.editProfile")}
           </Text>
         </TouchableOpacity>
 

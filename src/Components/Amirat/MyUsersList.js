@@ -6,10 +6,6 @@ import { getMyInfo } from "../../Actions/ProfileActions";
 import { strings } from "../../../locales/i18n";
 
 export default class MyUsersLists extends React.Component {
-  // static navigationOptions = {
-  //   header: null
-  // };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +19,7 @@ export default class MyUsersLists extends React.Component {
     let tempUsers;
 
     if (myType != "amira") {
-      tempUsers = [data.amira];
+      tempUsers = data.amira;
     } else {
       tempUsers = data.people;
     }
@@ -43,7 +39,7 @@ export default class MyUsersLists extends React.Component {
     else
       return (
         <View style={styles.container}>
-          <Text>{strings.MyUsersLists.emptyList}</Text>
+          <Text>{strings("MyUsersLists.emptyList")}</Text>
         </View>
       );
   };

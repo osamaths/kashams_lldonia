@@ -93,7 +93,6 @@ export default class Profile extends React.Component {
   };
 
   render() {
-    // return <View>{this.renderPosts()}</View>;
     return (
       <ListView
         dataSource={this.state.dataSource}

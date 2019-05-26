@@ -146,7 +146,7 @@ export default class SignUp extends React.Component {
               underlayColor="blue"
               onPress={() => {
                 console.log(Actions);
-                Actions.testComp();
+                Actions.login();
               }}
             >
               <Text style={{ color: "#009688" }}>

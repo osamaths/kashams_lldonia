@@ -11,6 +11,7 @@ export default class User extends React.Component {
     };
   }
   render() {
+    console.log(this.state.user);
     return (
       <View style={styles.container}>
         <UserInfo
@@ -25,7 +26,7 @@ export default class User extends React.Component {
         >
           <Image
             style={{ width: 50, height: 50 }}
-            source={require("../../Images/Icons/call.png")}
+            source={require("../../../Images/Icons/call.png")}
           />
         </TouchableOpacity>
       </View>

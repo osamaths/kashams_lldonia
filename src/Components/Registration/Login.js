@@ -40,7 +40,7 @@ checkLoginData = (userData, navigate) => {
     //   .catch(err => {
     //     throw err;
     //   });
-    navigate("Home");
+    Actions.home();
   }
 };
 export default class Login extends React.Component {
@@ -85,7 +85,9 @@ export default class Login extends React.Component {
         <Form type={Person} ref="form" options={options} />
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => {}}
+          onPress={() => {
+            Actions.replace("home");
+          }}
           underlayColor="blue"
         >
           <Text style={{ color: "white" }}>

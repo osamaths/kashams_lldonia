@@ -34,7 +34,7 @@ export default class AmiraLists extends React.Component {
     else
       return (
         <View style={styles.container}>
-          <Text>{strings.AmiraLists.emptyList}</Text>
+          <Text>{strings("AmiraLists.emptyList")}</Text>
         </View>
       );
   };

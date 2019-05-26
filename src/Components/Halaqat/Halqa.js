@@ -8,6 +8,7 @@ import {
   Dimensions
 } from "react-native";
 import { mainContainerColor, postStyle } from "../../Styles/Styles";
+import { Actions } from "react-native-router-flux";
 
 export default class Halqa extends React.Component {
   // static navigationOptions = {
@@ -26,7 +27,7 @@ export default class Halqa extends React.Component {
   }
 
   navigator() {
-    this.state.navigate("miniHalqatLists", { data: this.state });
+    Actions.miniHalqaLists({ data: this.state });
     console.log("Halqa, miniHalqat.length:", this.state);
   }
 

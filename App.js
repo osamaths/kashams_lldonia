@@ -9,10 +9,7 @@
 
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Button } from "react-native";
-import Shamosa from "./src/Components/Shamosa/Shamosa";
-import Login from "./src/Components/Regestrations/Login";
-import Routes from "./src/Components/Routers/RegestrationRoutes";
-import { getShamosaPosts } from "./src/Actions/ShamosaActions";
+import Routes from "./src/Components/Routers/Routes";
 import { Actions } from "react-native-router-flux";
 
 const instructions = Platform.select({
@@ -33,13 +30,6 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Routes />
-
-        <Button
-          title="heheheh"
-          onPress={() => {
-            Actions.reset("signup");
-          }}
-        />
       </View>
     );
   }

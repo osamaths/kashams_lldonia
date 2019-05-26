@@ -11,7 +11,7 @@ import { reserveMiniHalqa } from "../../Actions/miniHalqaActions";
 import { mainContainerColor, postStyle, textColor } from "../../Styles/Styles";
 import { strings } from "../../../locales/i18n";
 
-export default class miniHalqa extends React.Component {
+export default class MiniHalqa extends React.Component {
   // static navigationOptions = {
   //   header: null
   // };
@@ -39,28 +39,28 @@ export default class miniHalqa extends React.Component {
           <View style={styles.infoGroup}>
             <Text style={styles.mainTitle}>
               {" "}
-              {strings.miniHalqaLists.miniHalqa.name}{" "}
+              {strings("HalqaLists.miniHalqaLists.miniHalqa.name")}{" "}
             </Text>
             <Text style={styles.infoValue}>{this.state.name}</Text>
           </View>
           <View style={styles.infoGroup}>
             <Text style={styles.mainTitle}>
               {" "}
-              {strings.miniHalqaLists.miniHalqa.time}{" "}
+              {strings("HalqaLists.miniHalqaLists.miniHalqa.time")}{" "}
             </Text>
             <Text style={styles.infoValue}>{this.state.time}</Text>
           </View>
           <View style={styles.infoGroup}>
             <Text style={styles.mainTitle}>
               {" "}
-              {strings.miniHalqaLists.miniHalqa.place}{" "}
+              {strings("HalqaLists.miniHalqaLists.miniHalqa.place")}{" "}
             </Text>
             <Text style={styles.infoValue}>{this.state.place}</Text>
           </View>
           <View style={styles.infoGroup}>
             <Text style={styles.mainTitle}>
               {" "}
-              {strings.miniHalqaLists.miniHalqa.students}{" "}
+              {strings("HalqaLists.miniHalqaLists.miniHalqa.students")}{" "}
             </Text>
             <Text style={styles.mainTitle}>{this.state.length}</Text>
           </View>
@@ -71,7 +71,7 @@ export default class miniHalqa extends React.Component {
             }}
           >
             <Text style={{ color: "white" }}>
-              {strings.miniHalqaLists.miniHalqa.select}
+              {strings("HalqaLists.miniHalqaLists.miniHalqa.select")}
             </Text>
           </TouchableOpacity>
         </View>

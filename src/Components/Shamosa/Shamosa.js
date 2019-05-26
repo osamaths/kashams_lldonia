@@ -13,7 +13,6 @@ export default class Shamosa extends React.Component {
   }
 
   render() {
-    console.log(this.state.post);
     return (
       <View style={postStyle.container}>
         <UserInfo

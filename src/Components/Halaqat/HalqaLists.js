@@ -37,7 +37,7 @@ export default class HalqaLists extends React.Component {
     else
       return (
         <View style={styles.container}>
-          <Text>{strings.HalqaLists.emptyList}</Text>
+          <Text>{strings("HalqaLists.emptyList")}</Text>
         </View>
       );
   };
