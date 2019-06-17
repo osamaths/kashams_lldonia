@@ -57,7 +57,7 @@ export default class AddNews extends React.Component {
         // You can also display the image using data:
         let source = { uri: "data:image/jpeg;base64," + response.data };
 
-        this.setState({ avatarSource: { uri: response.path } });
+        this.setState({ avatarSource: source });
         console.log("------------------ path is : ", this.state.avatarSource);
       }
     });
@@ -67,37 +67,37 @@ export default class AddNews extends React.Component {
     console.log("rerendered.");
     return (
       <View style={styles.container}>
-        <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-          onChangeText={text => this.setState({ text })}
-          value={this.state.text}
-          underlineColorAndroid="transparent"
-        />
-
         <TouchableOpacity onPress={this.chooseImage}>
-          <Text>Select Photo</Text>
-
           <Image
             style={{
-              width: 500,
-              height: 200,
-              resizeMode: Image.resizeMode.contain,
+              width: 70,
+              height: 70,
+              resizeMode: "contain",
               alignSelf: "center",
               backgroundColor: "steelblue"
             }}
             source={{
-              uri: "data:image/jpeg;base64," + this.state.avatarSource.uri
+              uri: this.state.avatarSource.uri
             }}
           />
+          <Text>Select Photo</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             this.handelSubmit();
           }}
-          style={{ backgroundColor: "red", margin: 50, height: 60 }}
+          style={styles.button}
         >
-          <Text>Upload</Text>
+          <Text style={{ color: "white" }}>Post</Text>
         </TouchableOpacity>
+        <View>
+          <TextInput
+            style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+            onChangeText={text => this.setState({ text })}
+            value={this.state.text}
+            underlineColorAndroid="transparent"
+          />
+        </View>
       </View>
     );
   }
@@ -106,7 +106,17 @@ export default class AddNews extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: "#ffffff"
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  button: {
+    flex: 0.5,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#009688",
+    padding: 5,
+    height: 75,
+    width: 75,
+    borderRadius: 10
   }
 });

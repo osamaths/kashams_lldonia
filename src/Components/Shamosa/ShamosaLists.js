@@ -2,6 +2,9 @@ import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { getShamosaPosts } from "../../Actions/ShamosaActions";
 import Shamosa from "./Shamosa";
+import { retrieveData } from "../../Actions/StorageActions";
+import { validateToken } from "../../Actions/AccessActions";
+
 export default class ShamosaLists extends React.Component {
   // static navigationOptions = {
   //   header: null
@@ -12,6 +15,9 @@ export default class ShamosaLists extends React.Component {
     this.state = {
       posts: ""
     };
+  }
+  componentWillMount() {
+    validateToken(retrieveData("token"));
   }
   componentDidMount() {
     let tempPosts = getShamosaPosts();

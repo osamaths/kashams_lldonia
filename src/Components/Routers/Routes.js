@@ -1,13 +1,8 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 
-import {
-  Router,
-  Scene,
-  Lightbox,
-  LegacyTabs,
-  Stack
-} from "react-native-router-flux";
+import { Router, Scene } from "react-native-router-flux";
+
 import Login from "../Registration/Login";
 import SignUp from "../Registration/Signup";
 import ShamosaLists from "../Shamosa/ShamosaLists";
@@ -16,11 +11,9 @@ import HalqaLists from "../Halaqat/HalqaLists";
 import Profile from "../Profile/Profile";
 import AmiraLists from "../Amirat/AmiraLists";
 import MyUsersLists from "../Amirat/MyUsersList";
-
-import testComp from "./testComp";
-import testComp2 from "./testComp2";
 import SideMenu from "../SharedComponents/SideMenu";
 import MiniHalqaLists from "../Halaqat/MiniHalqaLists";
+import AddNews from "../News/AddNews";
 
 const Routes = () => (
   <Router>
@@ -28,13 +21,14 @@ const Routes = () => (
       <Scene
         key="registration"
         tabs
-        initial
         hideNavBar
+        initial
         tabBarPosition="top"
         tabBarStyle={styles.tabBarStyle}
       >
-        <Scene key="login" component={Login} initial={true} hideNavBar />
-        <Scene key="signup" component={SignUp} hideNavBar />
+        <Scene key="login" component={Login} initial hideNavBar />
+        {/* <Scene key="signup" component={SignUp} hideNavBar /> */}
+        {/* <Scene key="addNews" component={AddNews} initial hideNavBar /> */}
       </Scene>
       <Scene
         key="home"
@@ -68,7 +62,6 @@ const Routes = () => (
           <Scene key="profile" component={Profile} hideNavBar />
           <Scene key="myUsersList" component={MyUsersLists} hideNavBar />
           <Scene key="selectAmira" component={AmiraLists} hideNavBar />
-          <Scene key="logout" component={testComp} hideNavBar />
         </Scene>
       </Scene>
     </Scene>

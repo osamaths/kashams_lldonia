@@ -27,4 +27,8 @@ export function strings(name, params = {}) {
   return I18n.t(name, params);
 }
 
+export function setLanguage(lang) {
+  I18n.language = lang;
+}
+
 export default I18n;

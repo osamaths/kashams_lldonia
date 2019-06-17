@@ -1,8 +1,12 @@
 import React from "react";
+import { I18nManager } from "react-native";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import t from "tcomb-form-native";
 import { strings } from "../../../locales/i18n";
 import { Actions } from "react-native-router-flux";
+import { setLanguage } from "../../../locales/i18n";
+import { storeMyInfo } from "../../Actions/ProfileActions";
+import { validateToken } from "../../Actions/AccessActions";
 
 var Form = t.form.Form;
 
@@ -14,41 +18,42 @@ var Person = t.struct({
 
 const options = {};
 
-checkLoginData = (userData, navigate) => {
-  if (userData) {
-    var req = {
-      method: "POST",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
-    };
-    var url = "https://kashams-lldonia.herokuapp.com/user/login";
-
-    // fetch(url, req)
-    //   .then(response => {
-    //     return response.json();
-    //   })
-    //   .then(responseJson => {
-    //     if (responseJson === true) {
-    //       navigate("Home");
-    //     } else {
-    //       alert(responseJson.message);
-    //     }
-    //   })
-    //   .catch(err => {
-    //     throw err;
-    //   });
-    Actions.home();
-  }
-};
 export default class Login extends React.Component {
   constructor() {
     super();
     this._getFormOptions = this._getFormOptions.bind(this);
-  }
 
+    // validateToken();
+  }
+  checkLoginData(userData) {
+    if (userData) {
+      var req = {
+        method: "POST",
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+      };
+      var url = "http://192.168.0.55:3005/user/login"; // "https://kashams-lldonia.herokuapp.com/user/login";
+
+      fetch(url, req)
+        .then(response => {
+          return response.json();
+        })
+        .then(responseJson => {
+          if (responseJson.status === true) {
+            storeMyInfo(responseJson.user);
+            Actions.home();
+          } else {
+            alert(responseJson.message);
+          }
+        })
+        .catch(err => {
+          throw err;
+        });
+    }
+  }
   _getFormOptions() {
     return {
       fields: {
@@ -86,7 +91,8 @@ export default class Login extends React.Component {
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {
-            Actions.replace("home");
+            var data = this.refs.form.getValue();
+            this.checkLoginData(data);
           }}
           underlayColor="blue"
         >
@@ -101,7 +107,7 @@ export default class Login extends React.Component {
           <TouchableOpacity
             underlayColor="blue"
             onPress={() => {
-              Actions.signup();
+              // Actions.signup();
             }}
           >
             <Text style={{ color: "#009688", marginLeft: 3 }}>
