@@ -1,16 +1,37 @@
 import call from "react-native-phone-call";
 
-export const getMyList = () => {
-  /* fetch('http://192.168.174.128:3005/get/halqat/list')
-    .then((resp) => resp.json())
-    .then(function(data) {
-        return 'data';
-    })
-    .catch(error => {
-        return 'Faild';
-    }) */
+export const getMyList = setHalqat => {
+  console.log("---------");
 
-  return fakeHalqat;
+  var req = {
+    method: "POST",
+    headers: {
+      Accepts: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      end: 3,
+      amount: 3,
+      flag: false
+    })
+  };
+  var url = "http://192.168.0.55:3005/halqa/get"; // "https://kashams-lldonia.herokuapp.com/user/login";
+
+  fetch(url, req)
+    .then(response => {
+      return response.json();
+    })
+    .then(responseJson => {
+      console.log("----->", responseJson);
+      if (responseJson.status === true) {
+        setHalqat(responseJson.data);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+
+      throw err;
+    });
 };
 
 export const callUser = user => {

@@ -10,6 +10,7 @@ import {
 import { reserveMiniHalqa } from "../../Actions/miniHalqaActions";
 import { mainContainerColor, postStyle, textColor } from "../../Styles/Styles";
 import { strings } from "../../../locales/i18n";
+import { getMyInfo } from "../../Actions/StorageActions";
 
 export default class MiniHalqa extends React.Component {
   // static navigationOptions = {
@@ -20,19 +21,47 @@ export default class MiniHalqa extends React.Component {
     this.state = {
       _id: this.props.miniHalqa._id,
       name: this.props.miniHalqa.name,
+      teacher: this.props.miniHalqa.teacher,
       time: this.props.miniHalqa.time,
       place: this.props.miniHalqa.place,
-      length: this.props.miniHalqa.length
+      image: this.props.miniHalqa.image,
+      students: this.props.miniHalqa.students,
+      isSelected: false
     };
+
+    this.renderSelectBtn = this.renderSelectBtn.bind(this);
+  }
+  componentDidMount() {
+    this.checkSelectedBtn(this.state.students);
+  }
+  checkSelectedBtn(students) {
+    for (let index = 0; index < students.length; index++) {
+      const studentID = students[index];
+
+      if (getMyInfo()._id === studentID) this.setState({ isSelected: true });
+    }
+  }
+  renderSelectBtn() {
+    var updatedStudents = this.state.students.concat(getMyInfo()._id);
+
+    this.setState({ isSelected: true, students: updatedStudents });
   }
   render() {
+    const {
+      name,
+      time,
+      place,
+      teacher,
+      image,
+      students,
+      isSelected
+    } = this.state;
     return (
       <View style={[styles.container, mainContainerColor]}>
         <Image
           style={styles.circleImage}
           source={{
-            uri:
-              "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50"
+            uri: image
           }}
         />
         <View style={styles.info}>
@@ -41,37 +70,52 @@ export default class MiniHalqa extends React.Component {
               {" "}
               {strings("HalqaLists.miniHalqaLists.miniHalqa.name")}{" "}
             </Text>
-            <Text style={styles.infoValue}>{this.state.name}</Text>
+            <Text style={styles.infoValue}>{name}</Text>
+          </View>
+          <View style={styles.infoGroup}>
+            <Text style={styles.mainTitle}>
+              {" "}
+              {strings("HalqaLists.miniHalqaLists.miniHalqa.teacher")}{" "}
+            </Text>
+            <Text style={styles.infoValue}>{teacher}</Text>
           </View>
           <View style={styles.infoGroup}>
             <Text style={styles.mainTitle}>
               {" "}
               {strings("HalqaLists.miniHalqaLists.miniHalqa.time")}{" "}
             </Text>
-            <Text style={styles.infoValue}>{this.state.time}</Text>
+            <Text style={styles.infoValue}>{time}</Text>
           </View>
           <View style={styles.infoGroup}>
             <Text style={styles.mainTitle}>
               {" "}
               {strings("HalqaLists.miniHalqaLists.miniHalqa.place")}{" "}
             </Text>
-            <Text style={styles.infoValue}>{this.state.place}</Text>
+            <Text style={styles.infoValue}>{place}</Text>
           </View>
           <View style={styles.infoGroup}>
             <Text style={styles.mainTitle}>
               {" "}
               {strings("HalqaLists.miniHalqaLists.miniHalqa.students")}{" "}
             </Text>
-            <Text style={styles.mainTitle}>{this.state.length}</Text>
+            <Text style={styles.mainTitle}>{students.length}</Text>
           </View>
           <TouchableOpacity
-            style={styles.button}
+            style={[
+              styles.button,
+              isSelected ? styles.selectedBtn : styles.selectBtn
+            ]}
+            disabled={isSelected}
             onPress={() => {
-              reserveMiniHalqa(this.state);
+              reserveMiniHalqa(this.state, this.renderSelectBtn);
             }}
           >
-            <Text style={{ color: "white" }}>
-              {strings("HalqaLists.miniHalqaLists.miniHalqa.select")}
+            <Text
+              style={isSelected ? { color: "#009688" } : { color: "white" }}
+            >
+              {isSelected
+                ? strings("HalqaLists.miniHalqaLists.miniHalqa.selected")
+                : strings("HalqaLists.miniHalqaLists.miniHalqa.select")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -97,7 +141,7 @@ const styles = StyleSheet.create({
   circleImage: {
     flex: 1,
     width: width / 3,
-    height: height / 5.5,
+    height: "100%",
     borderWidth: 2,
     borderColor: "rgba(0,0,0,0.2)",
     alignItems: "center",
@@ -126,8 +170,13 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#009688",
     padding: 10,
     marginTop: 5
+  },
+  selectBtn: {
+    backgroundColor: "#009688"
+  },
+  selectedBtn: {
+    backgroundColor: "transparent"
   }
 });

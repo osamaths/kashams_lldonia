@@ -7,9 +7,11 @@ import {
   Dimensions
 } from "react-native";
 import { Actions } from "react-native-router-flux";
-import { getMyInfo } from "../../Actions/ProfileActions";
+import { getMyInfo } from "../../Actions/StorageActions";
+import { logout } from "../../Actions/AccessActions";
 import MyInfo from "../Profile/MyInfo";
 import MenuButton from "./MenuButton";
+import { strings } from "../../../locales/i18n";
 
 export default class SideMenu extends React.Component {
   constructor(props) {
@@ -46,7 +48,7 @@ export default class SideMenu extends React.Component {
   }
 
   renderButtons() {
-    let type = getMyInfo().type;
+    let type = getMyInfo().userType;
     switch (type) {
       case "normal":
         return this.renderNormal();
@@ -64,9 +66,9 @@ export default class SideMenu extends React.Component {
   renderLogout() {
     return (
       <MenuButton
-        title={"الخروج"}
+        title={strings("logout.logout_btn")}
         onPress={() => {
-          Actions.reset("registration");
+          logout();
         }}
       />
     );

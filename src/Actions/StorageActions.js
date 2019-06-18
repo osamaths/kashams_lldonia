@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
+let _userInfo = {};
 
 export const retrieveData = async key => {
   try {
@@ -15,8 +16,11 @@ export const retrieveData = async key => {
   }
 };
 
-export const storeMyInfo = user => {
-  _storeLoginData(user);
+export const setMyInfo = user => {
+  _userInfo = Object.assign({}, user);
+};
+export const getMyInfo = () => {
+  return _userInfo;
 };
 const _storeLoginData = async user => {
   try {

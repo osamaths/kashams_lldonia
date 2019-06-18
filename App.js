@@ -8,8 +8,10 @@
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, YellowBox } from "react-native";
 import Routes from "./src/Components/Routers/Routes";
+
+YellowBox.ignoreWarnings(["Remote debugger"]);
 
 export default class App extends Component {
   constructor() {

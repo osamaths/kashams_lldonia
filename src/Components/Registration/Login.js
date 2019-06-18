@@ -5,7 +5,7 @@ import t from "tcomb-form-native";
 import { strings } from "../../../locales/i18n";
 import { Actions } from "react-native-router-flux";
 import { setLanguage } from "../../../locales/i18n";
-import { storeMyInfo } from "../../Actions/ProfileActions";
+import { setMyInfo } from "../../Actions/StorageActions";
 import { validateToken } from "../../Actions/AccessActions";
 
 var Form = t.form.Form;
@@ -15,6 +15,11 @@ var Person = t.struct({
   username: t.String,
   password: t.String
 });
+
+var values = {
+  username: "osamaths",
+  password: "1234"
+};
 
 const options = {};
 
@@ -43,7 +48,7 @@ export default class Login extends React.Component {
         })
         .then(responseJson => {
           if (responseJson.status === true) {
-            storeMyInfo(responseJson.user);
+            setMyInfo(responseJson.user);
             Actions.home();
           } else {
             alert(responseJson.message);
@@ -87,7 +92,7 @@ export default class Login extends React.Component {
           source={require("../../../Images/Icons/appLogo.png")}
           style={{ width: 170, height: 150, alignSelf: "center" }}
         />
-        <Form type={Person} ref="form" options={options} />
+        <Form type={Person} ref="form" options={options} value={values} />
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {

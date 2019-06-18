@@ -1,6 +1,33 @@
-export const reserveMiniHalqa = halqa => {
-  console.log("Halqa #" + halqa._id + " has been reserved successfully.");
-  alert("Halqa " + halqa.name + " has been reserved successfully.");
+const { getMyInfo } = require("../Actions/StorageActions");
 
-  // Reserve request goes here...
+export const reserveMiniHalqa = (halqa, renderSelectedBtn) => {
+  let studentID = getMyInfo()._id;
+  console.log(studentID);
+
+  var req = {
+    method: "POST",
+    headers: {
+      Accepts: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      _id: halqa._id,
+      studentID: studentID
+    })
+  };
+  var url = "http://192.168.0.55:3005/halqa/mini/add-student"; // "https://kashams-lldonia.herokuapp.com/user/login";
+
+  fetch(url, req)
+    .then(response => {
+      return response.json();
+    })
+    .then(responseJson => {
+      if (responseJson.status === true) {
+        renderSelectedBtn();
+        // alert("Halqa " + halqa.name + " has been reserved successfully.");
+      }
+    })
+    .catch(err => {
+      throw err;
+    });
 };

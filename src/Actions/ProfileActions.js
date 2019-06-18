@@ -1,4 +1,4 @@
-import { retrieveData } from "./StorageActions";
+import { retrieveData, getMyInfo } from "./StorageActions";
 
 export const reqLove = data => {
   console.log("love request has been sent.");
@@ -13,27 +13,6 @@ export const changeMyInfo = (changes, cb) => {
 export const reqDeleteShamosa = _id => {
   console.log(fakeData);
   return true;
-};
-
-export const getMyInfo = () => {
-  console.log("getMyInfo");
-
-  var myInfo = retrieveData("userType");
-
-  // var myInfo = {
-  //   avatar:
-  //     "https://www.rd.com/wp-content/uploads/2016/06/01-brainy-habits-wisest-people-age-woman.jpg",
-  //   username: "Shahd Jaouni",
-  //   name: {
-  //     firstname: "Shahd",
-  //     lastname: "Jaouni"
-  //   },
-  //   year: 2,
-  //   gender: "Female",
-  //   type: "amira"
-  // };
-
-  return myInfo;
 };
 
 export const getMyPosts = () => {

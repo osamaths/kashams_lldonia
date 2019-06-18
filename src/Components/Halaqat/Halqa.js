@@ -11,16 +11,13 @@ import { mainContainerColor, postStyle } from "../../Styles/Styles";
 import { Actions } from "react-native-router-flux";
 
 export default class Halqa extends React.Component {
-  // static navigationOptions = {
-  //   header: null
-  // };
   constructor(props) {
     super(props);
     this.state = {
       name: this.props.halqa.name,
       description: this.props.halqa.description,
-      miniHalqat: this.props.halqa.miniHalqat,
-      navigate: this.props.navigate
+      image: this.props.halqa.image,
+      miniHalqat: this.props.halqa.miniHalqat
     };
 
     this.navigator = this.navigator.bind(this);
@@ -32,6 +29,7 @@ export default class Halqa extends React.Component {
   }
 
   render() {
+    const { name, description, image } = this.state;
     return (
       <View style={[styles.container, mainContainerColor]}>
         <TouchableOpacity
@@ -42,14 +40,13 @@ export default class Halqa extends React.Component {
           <Image
             style={styles.circleImage}
             source={{
-              uri:
-                "https://www.islamicity.org/wp-content/plugins/blueprint-timthumb/timthumb.php?src=http://media.islamicity.org/wp-content/uploads/2015/07/Quran1.jpg&w=1200&h=675&q=50"
+              uri: image
             }}
           />
         </TouchableOpacity>
         <View style={styles.info}>
-          <Text style={styles.name}> {this.state.name} </Text>
-          <Text> {this.state.description} </Text>
+          <Text style={styles.name}> {name} </Text>
+          <Text> {description} </Text>
         </View>
       </View>
     );

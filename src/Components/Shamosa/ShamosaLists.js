@@ -17,7 +17,7 @@ export default class ShamosaLists extends React.Component {
     };
   }
   componentWillMount() {
-    validateToken(retrieveData("token"));
+    // validateToken(retrieveData("token"));
   }
   componentDidMount() {
     let tempPosts = getShamosaPosts();

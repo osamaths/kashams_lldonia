@@ -17,20 +17,10 @@ export default class MiniHalqaLists extends React.Component {
   }
 
   componentDidMount() {
-    console.log("miniHalqaLists");
-    // let tempMiniHalqat = getMyList();
-    // if (tempMiniHalqat && tempMiniHalqat.length > 0) {
-    //     this.setState({ minihalqat: tempMiniHalqat });
-    //     console.log("MiniHalqat is : ", this.state.minihalqat.length)
-    // }
+    console.log("miniHalqaLists", this.state.data);
   }
 
   renderMyList = array => {
-    /* navigate("miniHalqat", {
-            name: this.state.miniHalqat.name,
-            time: this.state.miniHalqat.time,
-            place: this.state.miniHalqa.place
-        }) */
     if (array.length > 0)
       return (
         <View>
