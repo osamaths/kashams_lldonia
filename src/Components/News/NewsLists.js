@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { getList } from "../../Actions/SharedActions";
 import NewsPost from "./NewsPost";
+import EmptyList from "../SharedComponents/EmptyList";
 export default class NewsLists extends React.Component {
   constructor(props) {
     super(props);
@@ -34,12 +35,7 @@ export default class NewsLists extends React.Component {
           ))}
         </ScrollView>
       );
-    else
-      return (
-        <View style={styles.container}>
-          <Text>There are no News.</Text>
-        </View>
-      );
+    else return <EmptyList />;
   };
 
   render() {
@@ -50,11 +46,6 @@ export default class NewsLists extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  emptylist: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
   }
 });
 

@@ -1,56 +1,52 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { getShamosaPosts } from "../../Actions/ShamosaActions";
+import { getList } from "../../Actions/SharedActions";
 import Shamosa from "./Shamosa";
 import { retrieveData } from "../../Actions/StorageActions";
 import { validateToken } from "../../Actions/AccessActions";
+import EmptyList from "../SharedComponents/EmptyList";
 
 export default class ShamosaLists extends React.Component {
-  // static navigationOptions = {
-  //   header: null
-  // };
-
   constructor(props) {
     super(props);
     this.state = {
-      posts: ""
+      posts: []
     };
+
+    this.setPosts = this.setPosts.bind(this);
   }
   componentWillMount() {
     // validateToken(retrieveData("token"));
   }
   componentDidMount() {
-    let tempPosts = getShamosaPosts();
-    if (tempPosts.length > 0) {
-      this.setState({ posts: tempPosts });
-    }
+    getList(this.setPosts, "shamosa/get", {
+      end: 10,
+      amount: 10,
+      flag: false
+    });
   }
-
+  setPosts(resPosts) {
+    this.setState({ posts: resPosts });
+  }
   renderPosts = () => {
     if (this.state.posts.length)
       return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
           {this.state.posts.map((post, index) => (
             <Shamosa post={post} key={index} />
           ))}
-        </View>
+        </ScrollView>
       );
-    else
-      return (
-        <View style={styles.container}>
-          <Text>There are no News.</Text>
-        </View>
-      );
+    else return <EmptyList />;
   };
 
   render() {
-    return <ScrollView>{this.renderPosts()}</ScrollView>;
+    return this.renderPosts();
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  post: {}
+  }
 });

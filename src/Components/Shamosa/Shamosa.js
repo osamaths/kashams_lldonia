@@ -3,6 +3,7 @@ import { View, Text, Image } from "react-native";
 import UserInfo from "../SharedComponents/UserInfo";
 import Love from "../SharedComponents/Love";
 import { postStyle } from "../../Styles/Styles";
+import { getMyInfo } from "../../Actions/StorageActions";
 
 export default class Shamosa extends React.Component {
   constructor(props) {
@@ -13,18 +14,16 @@ export default class Shamosa extends React.Component {
   }
 
   render() {
+    const { post } = this.state;
     return (
       <View style={postStyle.container}>
         <UserInfo
-          imageUrl={this.state.post.imageUrl}
-          username={this.state.post.username}
-          extraInfo={this.state.post.extraInfo}
+          imageUrl={post.image}
+          username={post.time}
+          extraInfo={[post.time]}
         />
-        <Image
-          style={postStyle.img}
-          source={{ uri: this.state.post.imageUrl }}
-        />
-        <Text style={postStyle.txt}> {this.state.post.text} </Text>
+        <Image style={postStyle.img} source={{ uri: post.image }} />
+        <Text style={postStyle.txt}> {post.text} </Text>
         <Love />
       </View>
     );

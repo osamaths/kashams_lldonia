@@ -1,3 +1,5 @@
+import { getList } from "../Actions/SharedActions";
+
 export const reqLove = data => {
   console.log("love request has been sent.");
   return true;

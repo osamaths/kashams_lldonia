@@ -63,9 +63,7 @@
     "emptyList": "There are no Users."
   },
   "HalqaLists": {
-    "emptyList": "There is no Halqa available.",
     "miniHalqaLists": {
-      "emptyList": "There is no Halqa available.",
       "miniHalqa": {
         "name": "Name:",
         "teacher": "Teacher:",
@@ -85,6 +83,7 @@
       "uploadBtn": "Upload"
     }
   },
+  "emptyList": "There are no Posts.",
   "SharedComponents": {
     "Love": {
       "errAlertMsg": "Somthing went wrong."

@@ -3,12 +3,13 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import Halqa from "./Halqa";
 import { getList } from "../../Actions/SharedActions";
 import { strings } from "../../../locales/i18n";
+import EmptyList from "../SharedComponents/EmptyList";
 
 export default class HalqaLists extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      halqat: ""
+      halqat: []
     };
     this.setHalqat = this.setHalqat.bind(this);
     this.renderMyList = this.renderMyList.bind(this);
@@ -27,7 +28,7 @@ export default class HalqaLists extends React.Component {
   }
 
   renderMyList = () => {
-    if (this.state.halqat.length > 0)
+    if (this.state.halqat.length)
       return (
         <ScrollView style={styles.container}>
           {this.state.halqat.map((halqa, index) => (
@@ -35,12 +36,7 @@ export default class HalqaLists extends React.Component {
           ))}
         </ScrollView>
       );
-    else
-      return (
-        <View style={styles.emptylist}>
-          <Text>{strings("HalqaLists.emptyList")}</Text>
-        </View>
-      );
+    else return <EmptyList />;
   };
 
   render() {
@@ -51,11 +47,6 @@ export default class HalqaLists extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  emptylist: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
   },
   emptyMsg: {}
 });
