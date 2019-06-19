@@ -1,9 +1,6 @@
 const { getMyInfo } = require("../Actions/StorageActions");
 
 export const reserveMiniHalqa = (halqa, renderSelectedBtn) => {
-  let studentID = getMyInfo()._id;
-  console.log(studentID);
-
   var req = {
     method: "POST",
     headers: {

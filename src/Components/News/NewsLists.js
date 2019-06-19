@@ -1,15 +1,65 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { getList } from "../../Actions/SharedActions";
 import NewsPost from "./NewsPost";
 export default class NewsLists extends React.Component {
-  // static navigationOptions = {
-  //   header: null
-  // };
-
   constructor(props) {
     super(props);
     this.state = {
-      posts: [
+      posts: []
+    };
+
+    this.setPosts = this.setPosts.bind(this);
+  }
+  setPosts(resPosts) {
+    console.log(resPosts);
+
+    this.setState({ posts: resPosts });
+  }
+  componentDidMount() {
+    console.log("NewsLists");
+
+    getList(this.setPosts, "news/get", {
+      end: 10,
+      amount: 10,
+      flag: false
+    });
+  }
+  renderPosts = () => {
+    if (this.state.posts.length)
+      return (
+        <ScrollView style={styles.container}>
+          {this.state.posts.map((post, index) => (
+            <NewsPost post={post} key={index} />
+          ))}
+        </ScrollView>
+      );
+    else
+      return (
+        <View style={styles.container}>
+          <Text>There are no News.</Text>
+        </View>
+      );
+  };
+
+  render() {
+    return this.renderPosts();
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  emptylist: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
+});
+
+/*
+[
         {
           imageUrl:
             "https://cdn3.iconfinder.com/data/icons/character/512/41-512.png",
@@ -43,36 +93,4 @@ export default class NewsLists extends React.Component {
           time: "02:36pm"
         }
       ]
-    };
-  }
-
-  renderPosts = () => {
-    if (this.state.posts.length)
-      return (
-        <View style={styles.container}>
-          {this.state.posts.map((post, index) => (
-            <NewsPost post={post} key={index} />
-          ))}
-        </View>
-      );
-    else
-      return (
-        <View style={styles.container}>
-          <Text>There are no News.</Text>
-        </View>
-      );
-  };
-
-  render() {
-    return (
-      <ScrollView style={styles.container}>{this.renderPosts()}</ScrollView>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  post: {}
-});
+*/

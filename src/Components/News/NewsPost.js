@@ -7,22 +7,33 @@ export default class NewsPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: this.props.post
+      post: this.props.post,
+      numberOfLines: 4
     };
   }
   render() {
+    const { post, numberOfLines } = this.state;
     return (
       <View style={postStyle.container}>
         <UserInfo
-          imageUrl={this.state.post.imageUrl}
-          username={this.state.post.username}
-          time={this.state.post.time}
+          imageUrl="https://cdn3.iconfinder.com/data/icons/character/512/41-512.png"
+          username="Admin"
+          extraInfo={[post.time]}
         />
-        <Image
-          style={postStyle.img}
-          source={{ uri: this.state.post.imageUrl }}
-        />
-        <Text style={postStyle.txt}> {this.state.post.text} </Text>
+        <Image style={postStyle.img} source={{ uri: post.image }} />
+        <Text
+          style={postStyle.txt}
+          numberOfLines={numberOfLines}
+          ellipsizeMode="tail"
+          onPress={() =>
+            this.setState({
+              numberOfLines: numberOfLines === 4 ? Number.MAX_SAFE_INTEGER : 4
+            })
+          }
+        >
+          {" "}
+          {post.text}{" "}
+        </Text>
       </View>
     );
   }

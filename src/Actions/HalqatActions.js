@@ -1,6 +1,6 @@
 import call from "react-native-phone-call";
 
-export const getMyList = setHalqat => {
+export const getList = (cb, route) => {
   console.log("---------");
 
   var req = {
@@ -15,7 +15,7 @@ export const getMyList = setHalqat => {
       flag: false
     })
   };
-  var url = "http://192.168.0.55:3005/halqa/get"; // "https://kashams-lldonia.herokuapp.com/user/login";
+  var url = "http://192.168.0.55:3005/" + route; // "https://kashams-lldonia.herokuapp.com/user/login";
 
   fetch(url, req)
     .then(response => {
@@ -24,7 +24,7 @@ export const getMyList = setHalqat => {
     .then(responseJson => {
       console.log("----->", responseJson);
       if (responseJson.status === true) {
-        setHalqat(responseJson.data);
+        cb(responseJson.data);
       }
     })
     .catch(err => {

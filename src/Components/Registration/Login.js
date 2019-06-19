@@ -66,7 +66,7 @@ export default class Login extends React.Component {
           label: strings("login.fields.username.label"),
           error: strings("login.fields.username.error"),
           returnKeyType: "next",
-          autoFocus: true,
+          // autoFocus: true,
           onSubmitEditing: () => {
             this.refs.form.getComponent("password").refs.input.focus();
           }

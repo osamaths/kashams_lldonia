@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import Halqa from "./Halqa";
-import { getMyList } from "../../Actions/HalqatActions";
+import { getList } from "../../Actions/SharedActions";
 import { strings } from "../../../locales/i18n";
 
 export default class HalqaLists extends React.Component {
@@ -13,16 +13,20 @@ export default class HalqaLists extends React.Component {
     this.setHalqat = this.setHalqat.bind(this);
     this.renderMyList = this.renderMyList.bind(this);
   }
-  setHalqat(tempHalqat) {
-    this.setState({ halqat: tempHalqat });
+  setHalqat(resPosts) {
+    this.setState({ halqat: resPosts });
   }
   componentDidMount() {
     console.log("HalqaLists");
 
-    getMyList(this.setHalqat);
+    getList(this.setHalqat, "halqa/get", {
+      end: 10,
+      amount: 10,
+      flag: false
+    });
   }
 
-  renderMyList = navigate => {
+  renderMyList = () => {
     if (this.state.halqat.length > 0)
       return (
         <ScrollView style={styles.container}>

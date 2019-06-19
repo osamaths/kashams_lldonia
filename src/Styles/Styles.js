@@ -2,7 +2,6 @@ export const postStyle = {
   container: {
     flex: 1,
     flexDirection: "column",
-    paddingTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
     borderBottomColor: "#009688",
