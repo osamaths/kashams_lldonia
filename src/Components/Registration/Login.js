@@ -40,7 +40,7 @@ export default class Login extends React.Component {
         },
         body: JSON.stringify(userData)
       };
-      var url = "http://192.168.0.55:3005/user/login"; // "https://kashams-lldonia.herokuapp.com/user/login";
+      var url = "http://192.168.40.1:3003/user/login"; // "https://kashams-lldonia.herokuapp.com/user/login";
 
       fetch(url, req)
         .then(response => {
@@ -48,7 +48,9 @@ export default class Login extends React.Component {
         })
         .then(responseJson => {
           if (responseJson.status === true) {
+            console.log(responseJson);
             setMyInfo(responseJson.user);
+
             Actions.home();
           } else {
             alert(responseJson.message);
@@ -112,7 +114,7 @@ export default class Login extends React.Component {
           <TouchableOpacity
             underlayColor="blue"
             onPress={() => {
-              // Actions.signup();
+              Actions.signup();
             }}
           >
             <Text style={{ color: "#009688", marginLeft: 3 }}>

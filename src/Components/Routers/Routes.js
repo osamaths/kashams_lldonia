@@ -12,7 +12,7 @@ import Profile from "../Profile/Profile";
 import AmiraLists from "../Amirat/AmiraLists";
 import MyUsersLists from "../Amirat/MyUsersList";
 import SideMenu from "../SharedComponents/SideMenu";
-import MiniHalqaLists from "../Halaqat/MiniHalqaLists";
+import MiniHalqaLists from "../Halaqat/miniHalqaLists";
 import AddNews from "../News/AddNews";
 
 const Routes = () => (
@@ -27,7 +27,7 @@ const Routes = () => (
         tabBarStyle={styles.tabBarStyle}
       >
         <Scene key="login" component={Login} initial hideNavBar />
-        {/* <Scene key="signup" component={SignUp} hideNavBar /> */}
+        <Scene key="signup" component={SignUp} hideNavBar />
         {/* <Scene key="addNews" component={AddNews} initial hideNavBar /> */}
       </Scene>
       <Scene
